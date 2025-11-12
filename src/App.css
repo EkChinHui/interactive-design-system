@@ -154,10 +154,15 @@
   background: #2a2a2a;
 }
 
-.btn-edit-system {
+.nav-item-actions {
   position: absolute;
   top: 0.5rem;
   right: 0.5rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.btn-edit-system {
   background: #3b82f6;
   color: #ffffff;
   border: none;
@@ -174,6 +179,25 @@
 
 .btn-edit-system:hover {
   background: #2563eb;
+}
+
+.btn-delete-system {
+  background: #ef4444;
+  color: #ffffff;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  transition: background 0.2s ease;
+}
+
+.btn-delete-system:hover {
+  background: #dc2626;
 }
 
 .nav-item-content {

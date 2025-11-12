@@ -56,8 +56,27 @@ def clean_html(content: str) -> str:
         cleaned = re.sub(r'```\n?', '', content)
     return cleaned.strip()
 
+# Helper function to check if HTML is complete
+def is_html_complete(html: str) -> bool:
+    """Check if HTML document is complete with proper closing tags"""
+    html_lower = html.lower().strip()
+
+    # Check for essential closing tags
+    has_closing_html = '</html>' in html_lower
+    has_closing_body = '</body>' in html_lower
+
+    # Check if it ends properly (not mid-tag or mid-attribute)
+    ends_properly = html_lower.endswith('</html>') or html_lower.endswith('</html>\n')
+
+    return has_closing_html and has_closing_body and ends_properly
+
+# Helper function to get the last N characters for context
+def get_continuation_context(html: str, chars: int = 2000) -> str:
+    """Get the last N characters of HTML for continuation context"""
+    return html[-chars:] if len(html) > chars else html
+
 # Helper function to call LLM
-async def call_llm(user_prompt: str, system_prompt: str = "") -> str:
+async def call_llm(user_prompt: str, system_prompt: str = "", max_tokens: int = 64000) -> str:
     """Call LLM using litellm"""
     messages = []
     if system_prompt:
@@ -65,10 +84,10 @@ async def call_llm(user_prompt: str, system_prompt: str = "") -> str:
     messages.append({"role": "user", "content": user_prompt})
 
     response = litellm.completion(
-        model="gpt-4o-mini",
+        model="anthropic/claude-sonnet-4-5-20250929",
         messages=messages,
         temperature=0.7,
-        max_tokens=16000
+        max_tokens=max_tokens,
     )
 
     return response.choices[0].message.content
@@ -107,6 +126,41 @@ The design system should be named "{request.name}" and should include all standa
 
         # Clean up the response
         cleaned_html = clean_html(html_content)
+
+        # Check if HTML is complete, if not, continue generation
+        continuation_attempts = 0
+        max_continuations = 5  # Prevent infinite loops
+
+        while not is_html_complete(cleaned_html) and continuation_attempts < max_continuations:
+            continuation_attempts += 1
+            print(f"HTML incomplete, continuing generation (attempt {continuation_attempts}/{max_continuations})...")
+
+            # Get context from the end of the current HTML
+            context = get_continuation_context(cleaned_html)
+
+            continuation_prompt = f"""The previous response was cut off. Here is where it ended:
+
+...{context}
+
+Please continue from EXACTLY where this left off and complete the rest of the HTML document. Do NOT repeat any of the content shown above. Start immediately from where it was cut off and continue until the document is complete with proper closing tags (</body> and </html>).
+
+Output ONLY the continuation HTML code, no explanations or markdown code blocks."""
+
+            print(f"Requesting continuation from position: ...{context[-100:]}")
+
+            # Get continuation
+            continuation = await call_llm(continuation_prompt, "")
+            cleaned_continuation = clean_html(continuation)
+
+            # Append continuation to existing HTML
+            cleaned_html += "\n" + cleaned_continuation
+
+            print(f"Added {len(cleaned_continuation)} characters. Total length: {len(cleaned_html)}")
+
+        if is_html_complete(cleaned_html):
+            print(f"✓ HTML generation complete after {continuation_attempts} continuation(s)")
+        else:
+            print(f"⚠ Warning: HTML may still be incomplete after {max_continuations} attempts")
 
         # Save the file
         file_name = f"{request.name.lower().replace(' ', '-')}.html"
@@ -163,6 +217,41 @@ Please modify the design system according to this feedback and return the comple
         # Clean up the response
         cleaned_html = clean_html(updated_html)
 
+        # Check if HTML is complete, if not, continue generation
+        continuation_attempts = 0
+        max_continuations = 5  # Prevent infinite loops
+
+        while not is_html_complete(cleaned_html) and continuation_attempts < max_continuations:
+            continuation_attempts += 1
+            print(f"HTML incomplete, continuing generation (attempt {continuation_attempts}/{max_continuations})...")
+
+            # Get context from the end of the current HTML
+            context = get_continuation_context(cleaned_html)
+
+            continuation_prompt = f"""The previous response was cut off. Here is where it ended:
+
+...{context}
+
+Please continue from EXACTLY where this left off and complete the rest of the HTML document. Do NOT repeat any of the content shown above. Start immediately from where it was cut off and continue until the document is complete with proper closing tags (</body> and </html>).
+
+Output ONLY the continuation HTML code, no explanations or markdown code blocks."""
+
+            print(f"Requesting continuation from position: ...{context[-100:]}")
+
+            # Get continuation
+            continuation = await call_llm(continuation_prompt, "")
+            cleaned_continuation = clean_html(continuation)
+
+            # Append continuation to existing HTML
+            cleaned_html += "\n" + cleaned_continuation
+
+            print(f"Added {len(cleaned_continuation)} characters. Total length: {len(cleaned_html)}")
+
+        if is_html_complete(cleaned_html):
+            print(f"✓ HTML generation complete after {continuation_attempts} continuation(s)")
+        else:
+            print(f"⚠ Warning: HTML may still be incomplete after {max_continuations} attempts")
+
         # Save the updated file
         file_path.write_text(cleaned_html)
 
@@ -201,11 +290,38 @@ async def list_design_systems():
         print(f"Error listing design systems: {e}")
         raise HTTPException(status_code=500, detail=f"Failed to list design systems: {str(e)}")
 
+@app.delete("/api/design-system/{file_name}")
+async def delete_design_system(file_name: str):
+    """Delete a design system file"""
+    try:
+        # Validate file name to prevent path traversal
+        if '/' in file_name or '\\' in file_name or '..' in file_name:
+            raise HTTPException(status_code=400, detail="Invalid file name")
+
+        file_path = Path(__file__).parent / "public" / "systems" / file_name
+
+        if not file_path.exists():
+            raise HTTPException(status_code=404, detail="Design system file not found")
+
+        # Delete the file
+        file_path.unlink()
+
+        print(f"Design system deleted: {file_path}")
+
+        return {"success": True, "fileName": file_name}
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        print(f"Error deleting design system: {e}")
+        raise HTTPException(status_code=500, detail=f"Failed to delete design system: {str(e)}")
+
 if __name__ == "__main__":
     import uvicorn
     print("Starting FastAPI server on http://localhost:3001")
     print("Available endpoints:")
-    print("  POST /api/generate-design-system")
-    print("  POST /api/edit-design-system")
-    print("  GET  /api/design-systems")
+    print("  POST   /api/generate-design-system")
+    print("  POST   /api/edit-design-system")
+    print("  DELETE /api/design-system/{file_name}")
+    print("  GET    /api/design-systems")
     uvicorn.run(app, host="0.0.0.0", port=3001)

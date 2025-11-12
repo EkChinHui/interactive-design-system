@@ -63,6 +63,44 @@ function App() {
     return colors[index % colors.length]
   }
 
+  // Fetch design systems from backend on mount
+  useEffect(() => {
+    const fetchSystems = async () => {
+      try {
+        const response = await fetch('http://localhost:3001/api/design-systems')
+        if (!response.ok) {
+          console.error('Failed to fetch design systems')
+          return
+        }
+
+        const data = await response.json()
+
+        // Transform backend response to match DesignSystem interface
+        const systems: DesignSystem[] = data.systems.map((system: any, index: number) => ({
+          id: system.fileName.replace('.html', ''),
+          name: system.name.split(' ').map((word: string) =>
+            word.charAt(0).toUpperCase() + word.slice(1)
+          ).join(' '),
+          description: designSystems.find(ds => ds.id === system.fileName.replace('.html', ''))?.description || 'Custom design system',
+          color: generateColor(index),
+          path: system.path
+        }))
+
+        if (systems.length > 0) {
+          setAllSystems(systems)
+          // Only update selected system if it's still the default first one
+          if (selectedSystem.id === designSystems[0].id) {
+            setSelectedSystem(systems[0])
+          }
+        }
+      } catch (error) {
+        console.error('Error fetching design systems:', error)
+      }
+    }
+
+    fetchSystems()
+  }, []) // Empty dependency array means this runs once on mount
+
   // Handle successful creation of new design system
   const handleCreateSuccess = (fileName: string, path: string) => {
     const name = fileName.replace('.html', '').replace(/-/g, ' ')
@@ -76,12 +114,48 @@ function App() {
 
     setAllSystems([...allSystems, newSystem])
     setSelectedSystem(newSystem)
+    // Force iframe reload for newly generated system
+    setIframeKey(prev => prev + 1)
   }
 
   // Handle successful edit of design system
   const handleEditSuccess = () => {
     // Force iframe reload by changing key
     setIframeKey(prev => prev + 1)
+  }
+
+  // Handle delete of design system
+  const handleDelete = async (system: DesignSystem) => {
+    if (!window.confirm(`Are you sure you want to delete "${system.name}"? This action cannot be undone.`)) {
+      return
+    }
+
+    try {
+      const fileName = system.path.split('/').pop()
+      if (!fileName) {
+        throw new Error('Invalid file name')
+      }
+
+      const response = await fetch(`http://localhost:3001/api/design-system/${fileName}`, {
+        method: 'DELETE',
+      })
+
+      if (!response.ok) {
+        const data = await response.json()
+        throw new Error(data.detail || 'Failed to delete design system')
+      }
+
+      // Remove from state
+      const updatedSystems = allSystems.filter(s => s.id !== system.id)
+      setAllSystems(updatedSystems)
+
+      // If we deleted the currently selected system, select the first available one
+      if (selectedSystem.id === system.id && updatedSystems.length > 0) {
+        setSelectedSystem(updatedSystems[0])
+      }
+    } catch (error) {
+      alert(`Failed to delete design system: ${error instanceof Error ? error.message : 'Unknown error'}`)
+    }
   }
 
   return (
@@ -141,13 +215,25 @@ function App() {
                     </div>
                   </button>
                   {selectedSystem.id === system.id && (
-                    <button
-                      className="btn-edit-system"
-                      onClick={() => setIsEditModalOpen(true)}
-                      title="Edit this design system"
-                    >
-                      ✎
-                    </button>
+                    <div className="nav-item-actions">
+                      <button
+                        className="btn-edit-system"
+                        onClick={() => setIsEditModalOpen(true)}
+                        title="Edit this design system"
+                      >
+                        ✎
+                      </button>
+                      <button
+                        className="btn-delete-system"
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          handleDelete(system)
+                        }}
+                        title="Delete this design system"
+                      >
+                        🗑
+                      </button>
+                    </div>
                   )}
                 </div>
               ))}
