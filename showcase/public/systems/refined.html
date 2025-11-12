@@ -1,0 +1,1685 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" data-build="2025-11-11T00:00:00Z">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="Studio Design System v1.0.0">
+  <title>Studio — Design System</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================
+       STUDIO DESIGN TOKENS
+       ============================================ */
+
+    :root {
+      /* Typography */
+      --ds-font-serif: 'Fraunces', Georgia, serif;
+      --ds-font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+      --ds-font-size-xs: 0.75rem;      /* 12px */
+      --ds-font-size-sm: 0.875rem;     /* 14px */
+      --ds-font-size-base: 1rem;       /* 16px */
+      --ds-font-size-lg: 1.125rem;     /* 18px */
+      --ds-font-size-xl: 1.25rem;      /* 20px */
+      --ds-font-size-2xl: 1.5rem;      /* 24px */
+      --ds-font-size-3xl: 2rem;        /* 32px */
+      --ds-font-size-4xl: 2.5rem;      /* 40px */
+      --ds-font-size-5xl: 3.5rem;      /* 56px */
+      --ds-font-size-6xl: 4.5rem;      /* 72px */
+      --ds-font-size-7xl: 6rem;        /* 96px */
+
+      --ds-font-weight-light: 300;
+      --ds-font-weight-normal: 400;
+      --ds-font-weight-medium: 500;
+      --ds-font-weight-semibold: 600;
+      --ds-font-weight-bold: 700;
+
+      --ds-line-tight: 1.1;
+      --ds-line-snug: 1.3;
+      --ds-line-normal: 1.5;
+      --ds-line-relaxed: 1.7;
+      --ds-line-loose: 2;
+
+      --ds-letter-tight: -0.02em;
+      --ds-letter-normal: 0;
+      --ds-letter-wide: 0.05em;
+
+      /* Colors - Refined Palette */
+      --ds-black: #0a0a0a;
+      --ds-gray-900: #1a1a1a;
+      --ds-gray-800: #2a2a2a;
+      --ds-gray-700: #404040;
+      --ds-gray-600: #5a5a5a;
+      --ds-gray-500: #737373;
+      --ds-gray-400: #a3a3a3;
+      --ds-gray-300: #d4d4d4;
+      --ds-gray-200: #e5e5e5;
+      --ds-gray-100: #f5f5f5;
+      --ds-gray-50: #fafafa;
+      --ds-white: #ffffff;
+
+      /* Accent - Warm Sage */
+      --ds-accent: #8b9d83;
+      --ds-accent-dark: #6b7d63;
+      --ds-accent-light: #abbe9f;
+      --ds-accent-subtle: #f1f4ed;
+
+      /* Semantic Colors */
+      --ds-bg: var(--ds-white);
+      --ds-bg-alt: var(--ds-gray-50);
+      --ds-bg-elevated: var(--ds-white);
+      --ds-text: var(--ds-black);
+      --ds-text-muted: var(--ds-gray-600);
+      --ds-text-subtle: var(--ds-gray-400);
+      --ds-border: var(--ds-gray-200);
+      --ds-border-subtle: var(--ds-gray-100);
+
+      /* Status Colors - Muted */
+      --ds-success: #5f8d4e;
+      --ds-warning: #d4a574;
+      --ds-danger: #b85c5c;
+      --ds-info: var(--ds-accent);
+
+      /* Spacing - Perfect Rhythm (8px base) */
+      --ds-space-0: 0;
+      --ds-space-1: 0.5rem;      /* 8px */
+      --ds-space-2: 1rem;        /* 16px */
+      --ds-space-3: 1.5rem;      /* 24px */
+      --ds-space-4: 2rem;        /* 32px */
+      --ds-space-5: 2.5rem;      /* 40px */
+      --ds-space-6: 3rem;        /* 48px */
+      --ds-space-8: 4rem;        /* 64px */
+      --ds-space-10: 5rem;       /* 80px */
+      --ds-space-12: 6rem;       /* 96px */
+      --ds-space-16: 8rem;       /* 128px */
+      --ds-space-20: 10rem;      /* 160px */
+      --ds-space-24: 12rem;      /* 192px */
+
+      /* Radius - Subtle Curves */
+      --ds-radius-none: 0;
+      --ds-radius-sm: 0.25rem;   /* 4px */
+      --ds-radius-md: 0.5rem;    /* 8px */
+      --ds-radius-lg: 1rem;      /* 16px */
+      --ds-radius-xl: 1.5rem;    /* 24px */
+      --ds-radius-full: 9999px;
+
+      /* Shadows - Soft & Refined */
+      --ds-shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);
+      --ds-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+      --ds-shadow-md: 0 4px 8px rgba(0, 0, 0, 0.04), 0 2px 4px rgba(0, 0, 0, 0.04);
+      --ds-shadow-lg: 0 12px 24px rgba(0, 0, 0, 0.06), 0 4px 8px rgba(0, 0, 0, 0.04);
+      --ds-shadow-xl: 0 24px 48px rgba(0, 0, 0, 0.08), 0 8px 16px rgba(0, 0, 0, 0.04);
+
+      /* Motion - Smooth & Elegant */
+      --ds-duration-instant: 100ms;
+      --ds-duration-fast: 200ms;
+      --ds-duration-normal: 300ms;
+      --ds-duration-slow: 400ms;
+      --ds-duration-slower: 600ms;
+
+      --ds-ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+      --ds-ease-in: cubic-bezier(0.4, 0, 1, 1);
+      --ds-ease-out: cubic-bezier(0, 0, 0.2, 1);
+      --ds-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+
+      /* Z-Index */
+      --ds-z-base: 0;
+      --ds-z-dropdown: 100;
+      --ds-z-sticky: 200;
+      --ds-z-overlay: 500;
+      --ds-z-modal: 600;
+      --ds-z-toast: 700;
+
+      /* Container */
+      --ds-container-sm: 640px;
+      --ds-container-md: 768px;
+      --ds-container-lg: 1024px;
+      --ds-container-xl: 1280px;
+    }
+
+    /* Dark Theme */
+    :root[data-theme="dark"] {
+      --ds-bg: var(--ds-black);
+      --ds-bg-alt: var(--ds-gray-900);
+      --ds-bg-elevated: var(--ds-gray-800);
+      --ds-text: var(--ds-gray-50);
+      --ds-text-muted: var(--ds-gray-400);
+      --ds-text-subtle: var(--ds-gray-500);
+      --ds-border: var(--ds-gray-800);
+      --ds-border-subtle: var(--ds-gray-900);
+
+      --ds-accent: #a3b89a;
+      --ds-accent-subtle: #1a1f1a;
+
+      --ds-shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.3);
+      --ds-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.4);
+      --ds-shadow-md: 0 4px 8px rgba(0, 0, 0, 0.4), 0 2px 4px rgba(0, 0, 0, 0.3);
+      --ds-shadow-lg: 0 12px 24px rgba(0, 0, 0, 0.5), 0 4px 8px rgba(0, 0, 0, 0.4);
+      --ds-shadow-xl: 0 24px 48px rgba(0, 0, 0, 0.6), 0 8px 16px rgba(0, 0, 0, 0.5);
+    }
+
+    /* ============================================
+       BASE STYLES
+       ============================================ */
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      font-family: var(--ds-font-sans);
+      font-size: 16px;
+      line-height: var(--ds-line-normal);
+      color: var(--ds-text);
+      background: var(--ds-bg);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    ::selection {
+      background: var(--ds-accent);
+      color: var(--ds-white);
+    }
+
+    /* Custom Scrollbar - Minimal */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--ds-bg-alt);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--ds-gray-300);
+      border-radius: var(--ds-radius-full);
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--ds-gray-400);
+    }
+
+    [data-theme="dark"] ::-webkit-scrollbar-thumb {
+      background: var(--ds-gray-700);
+    }
+
+    [data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+      background: var(--ds-gray-600);
+    }
+
+    /* ============================================
+       LAYOUT
+       ============================================ */
+
+    .studio-layout {
+      display: grid;
+      grid-template-areas:
+        "header header"
+        "sidebar main";
+      grid-template-columns: 280px 1fr;
+      grid-template-rows: auto 1fr;
+      min-height: 100vh;
+    }
+
+    .studio-header {
+      grid-area: header;
+      position: sticky;
+      top: 0;
+      z-index: var(--ds-z-sticky);
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--ds-border-subtle);
+      padding: var(--ds-space-3) var(--ds-space-6);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    [data-theme="dark"] .studio-header {
+      background: rgba(10, 10, 10, 0.95);
+    }
+
+    .studio-brand {
+      font-family: var(--ds-font-serif);
+      font-size: var(--ds-font-size-xl);
+      font-weight: var(--ds-font-weight-normal);
+      color: var(--ds-text);
+      text-decoration: none;
+      letter-spacing: var(--ds-letter-tight);
+      transition: opacity var(--ds-duration-fast) var(--ds-ease-smooth);
+    }
+
+    .studio-brand:hover {
+      opacity: 0.6;
+    }
+
+    .studio-sidebar {
+      grid-area: sidebar;
+      background: var(--ds-bg-alt);
+      border-right: 1px solid var(--ds-border-subtle);
+      padding: var(--ds-space-8) var(--ds-space-4);
+      height: calc(100vh - 73px);
+      position: sticky;
+      top: 73px;
+      overflow-y: auto;
+    }
+
+    .studio-main {
+      grid-area: main;
+      padding: var(--ds-space-8) var(--ds-space-6);
+      max-width: var(--ds-container-lg);
+      margin: 0 auto;
+    }
+
+    @media (max-width: 968px) {
+      .studio-layout {
+        grid-template-areas: "header" "main";
+        grid-template-columns: 1fr;
+      }
+      .studio-sidebar { display: none; }
+    }
+
+    /* ============================================
+       TYPOGRAPHY
+       ============================================ */
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--ds-font-serif);
+      font-weight: var(--ds-font-weight-semibold);
+      line-height: var(--ds-line-tight);
+      letter-spacing: var(--ds-letter-tight);
+      color: var(--ds-text);
+      margin-bottom: var(--ds-space-3);
+    }
+
+    h1 {
+      font-size: var(--ds-font-size-6xl);
+      line-height: var(--ds-line-tight);
+      margin-bottom: var(--ds-space-4);
+    }
+
+    h2 {
+      font-size: var(--ds-font-size-4xl);
+      margin-top: var(--ds-space-12);
+      margin-bottom: var(--ds-space-4);
+    }
+
+    h3 {
+      font-size: var(--ds-font-size-2xl);
+      margin-top: var(--ds-space-8);
+    }
+
+    h4 {
+      font-size: var(--ds-font-size-xl);
+    }
+
+    h5 {
+      font-size: var(--ds-font-size-lg);
+    }
+
+    h6 {
+      font-size: var(--ds-font-size-base);
+      font-family: var(--ds-font-sans);
+      text-transform: uppercase;
+      letter-spacing: var(--ds-letter-wide);
+      font-weight: var(--ds-font-weight-medium);
+    }
+
+    p {
+      font-size: var(--ds-font-size-base);
+      line-height: var(--ds-line-relaxed);
+      color: var(--ds-text-muted);
+      margin-bottom: var(--ds-space-3);
+    }
+
+    .lead {
+      font-size: var(--ds-font-size-xl);
+      line-height: var(--ds-line-relaxed);
+      color: var(--ds-text-muted);
+      font-weight: var(--ds-font-weight-light);
+    }
+
+    .caption {
+      font-size: var(--ds-font-size-sm);
+      color: var(--ds-text-subtle);
+      text-transform: uppercase;
+      letter-spacing: var(--ds-letter-wide);
+      font-weight: var(--ds-font-weight-medium);
+    }
+
+    code {
+      font-family: 'SF Mono', 'Monaco', monospace;
+      font-size: 0.9em;
+      background: var(--ds-bg-alt);
+      padding: 0.2em 0.4em;
+      border-radius: var(--ds-radius-sm);
+      color: var(--ds-accent-dark);
+    }
+
+    pre {
+      font-family: 'SF Mono', 'Monaco', monospace;
+      font-size: var(--ds-font-size-sm);
+      background: var(--ds-bg-alt);
+      padding: var(--ds-space-4);
+      border-radius: var(--ds-radius-md);
+      overflow-x: auto;
+      margin: var(--ds-space-4) 0;
+      border: 1px solid var(--ds-border-subtle);
+    }
+
+    pre code {
+      background: none;
+      padding: 0;
+    }
+
+    /* ============================================
+       BUTTONS - REFINED
+       ============================================ */
+
+    .studio-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--ds-space-1);
+      font-family: var(--ds-font-sans);
+      font-size: var(--ds-font-size-sm);
+      font-weight: var(--ds-font-weight-medium);
+      padding: var(--ds-space-2) var(--ds-space-4);
+      border-radius: var(--ds-radius-full);
+      border: none;
+      cursor: pointer;
+      transition: all var(--ds-duration-normal) var(--ds-ease-smooth);
+      text-decoration: none;
+      white-space: nowrap;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .studio-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: currentColor;
+      opacity: 0;
+      transition: opacity var(--ds-duration-normal) var(--ds-ease-smooth);
+    }
+
+    .studio-btn:hover::before {
+      opacity: 0.08;
+    }
+
+    .studio-btn:active {
+      transform: translateY(1px);
+    }
+
+    /* Primary Button */
+    .studio-btn--primary {
+      background: var(--ds-accent);
+      color: var(--ds-white);
+    }
+
+    .studio-btn--primary:hover {
+      background: var(--ds-accent-dark);
+      box-shadow: var(--ds-shadow-md);
+    }
+
+    /* Secondary Button */
+    .studio-btn--secondary {
+      background: var(--ds-text);
+      color: var(--ds-bg);
+    }
+
+    .studio-btn--secondary:hover {
+      background: var(--ds-gray-800);
+      box-shadow: var(--ds-shadow-md);
+    }
+
+    /* Outline Button */
+    .studio-btn--outline {
+      background: transparent;
+      color: var(--ds-text);
+      border: 1px solid var(--ds-border);
+    }
+
+    .studio-btn--outline:hover {
+      border-color: var(--ds-text);
+    }
+
+    /* Ghost Button */
+    .studio-btn--ghost {
+      background: transparent;
+      color: var(--ds-text);
+    }
+
+    .studio-btn--ghost:hover {
+      background: var(--ds-bg-alt);
+    }
+
+    /* Button Sizes */
+    .studio-btn--sm {
+      padding: var(--ds-space-1) var(--ds-space-3);
+      font-size: var(--ds-font-size-xs);
+    }
+
+    .studio-btn--lg {
+      padding: var(--ds-space-3) var(--ds-space-6);
+      font-size: var(--ds-font-size-base);
+    }
+
+    /* ============================================
+       INPUTS - MINIMAL
+       ============================================ */
+
+    .studio-input,
+    .studio-textarea,
+    .studio-select {
+      font-family: var(--ds-font-sans);
+      font-size: var(--ds-font-size-base);
+      color: var(--ds-text);
+      background: var(--ds-bg);
+      border: 1px solid var(--ds-border);
+      border-radius: var(--ds-radius-md);
+      padding: var(--ds-space-2) var(--ds-space-3);
+      width: 100%;
+      transition: all var(--ds-duration-normal) var(--ds-ease-smooth);
+    }
+
+    .studio-input:hover,
+    .studio-textarea:hover,
+    .studio-select:hover {
+      border-color: var(--ds-gray-400);
+    }
+
+    .studio-input:focus,
+    .studio-textarea:focus,
+    .studio-select:focus {
+      outline: none;
+      border-color: var(--ds-accent);
+      box-shadow: 0 0 0 3px var(--ds-accent-subtle);
+    }
+
+    .studio-textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .studio-label {
+      display: block;
+      font-size: var(--ds-font-size-sm);
+      font-weight: var(--ds-font-weight-medium);
+      color: var(--ds-text);
+      margin-bottom: var(--ds-space-1);
+    }
+
+    /* Checkbox - Minimal */
+    .studio-checkbox {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--ds-space-2);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .studio-checkbox input {
+      position: absolute;
+      opacity: 0;
+    }
+
+    .studio-checkbox-box {
+      width: 20px;
+      height: 20px;
+      border: 1px solid var(--ds-border);
+      border-radius: var(--ds-radius-sm);
+      background: var(--ds-bg);
+      transition: all var(--ds-duration-normal) var(--ds-ease-smooth);
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .studio-checkbox:hover .studio-checkbox-box {
+      border-color: var(--ds-accent);
+    }
+
+    .studio-checkbox input:checked + .studio-checkbox-box {
+      background: var(--ds-accent);
+      border-color: var(--ds-accent);
+    }
+
+    .studio-checkbox input:checked + .studio-checkbox-box::after {
+      content: '';
+      position: absolute;
+      left: 6px;
+      top: 3px;
+      width: 4px;
+      height: 8px;
+      border: solid var(--ds-white);
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
+
+    .studio-checkbox input:focus-visible + .studio-checkbox-box {
+      box-shadow: 0 0 0 3px var(--ds-accent-subtle);
+    }
+
+    /* Toggle Switch */
+    .studio-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--ds-space-2);
+      cursor: pointer;
+    }
+
+    .studio-toggle input {
+      position: absolute;
+      opacity: 0;
+    }
+
+    .studio-toggle-track {
+      width: 44px;
+      height: 24px;
+      background: var(--ds-gray-200);
+      border-radius: var(--ds-radius-full);
+      position: relative;
+      transition: background var(--ds-duration-normal) var(--ds-ease-smooth);
+    }
+
+    .studio-toggle-thumb {
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 20px;
+      height: 20px;
+      background: var(--ds-white);
+      border-radius: var(--ds-radius-full);
+      transition: transform var(--ds-duration-normal) var(--ds-ease-smooth);
+      box-shadow: var(--ds-shadow-sm);
+    }
+
+    .studio-toggle input:checked + .studio-toggle-track {
+      background: var(--ds-accent);
+    }
+
+    .studio-toggle input:checked + .studio-toggle-track .studio-toggle-thumb {
+      transform: translateX(20px);
+    }
+
+    /* ============================================
+       CARDS - CLEAN
+       ============================================ */
+
+    .studio-card {
+      background: var(--ds-bg-elevated);
+      border: 1px solid var(--ds-border-subtle);
+      border-radius: var(--ds-radius-lg);
+      padding: var(--ds-space-6);
+      transition: all var(--ds-duration-normal) var(--ds-ease-smooth);
+    }
+
+    .studio-card:hover {
+      border-color: var(--ds-border);
+      box-shadow: var(--ds-shadow-md);
+      transform: translateY(-2px);
+    }
+
+    .studio-card-title {
+      font-family: var(--ds-font-serif);
+      font-size: var(--ds-font-size-xl);
+      font-weight: var(--ds-font-weight-semibold);
+      margin-bottom: var(--ds-space-2);
+    }
+
+    .studio-card-text {
+      color: var(--ds-text-muted);
+      line-height: var(--ds-line-relaxed);
+    }
+
+    /* ============================================
+       ALERTS - SUBTLE
+       ============================================ */
+
+    .studio-alert {
+      padding: var(--ds-space-3) var(--ds-space-4);
+      border-radius: var(--ds-radius-md);
+      border-left: 3px solid;
+      margin: var(--ds-space-4) 0;
+      background: var(--ds-bg-alt);
+    }
+
+    .studio-alert--info {
+      border-color: var(--ds-info);
+    }
+
+    .studio-alert--success {
+      border-color: var(--ds-success);
+    }
+
+    .studio-alert--warning {
+      border-color: var(--ds-warning);
+    }
+
+    .studio-alert--danger {
+      border-color: var(--ds-danger);
+    }
+
+    /* ============================================
+       TABLES - ELEGANT
+       ============================================ */
+
+    .studio-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      font-size: var(--ds-font-size-sm);
+    }
+
+    .studio-table th {
+      font-family: var(--ds-font-sans);
+      font-size: var(--ds-font-size-xs);
+      font-weight: var(--ds-font-weight-medium);
+      text-align: left;
+      text-transform: uppercase;
+      letter-spacing: var(--ds-letter-wide);
+      color: var(--ds-text-subtle);
+      padding: var(--ds-space-2) var(--ds-space-3);
+      border-bottom: 1px solid var(--ds-border);
+    }
+
+    .studio-table td {
+      padding: var(--ds-space-3);
+      border-bottom: 1px solid var(--ds-border-subtle);
+      color: var(--ds-text-muted);
+    }
+
+    .studio-table tbody tr {
+      transition: background var(--ds-duration-fast) var(--ds-ease-smooth);
+    }
+
+    .studio-table tbody tr:hover {
+      background: var(--ds-bg-alt);
+    }
+
+    .studio-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* ============================================
+       NAVIGATION - REFINED
+       ============================================ */
+
+    .studio-nav {
+      list-style: none;
+    }
+
+    .studio-nav-section {
+      margin-bottom: var(--ds-space-6);
+    }
+
+    .studio-nav-title {
+      font-size: var(--ds-font-size-xs);
+      font-weight: var(--ds-font-weight-medium);
+      text-transform: uppercase;
+      letter-spacing: var(--ds-letter-wide);
+      color: var(--ds-text-subtle);
+      margin-bottom: var(--ds-space-2);
+      padding: 0 var(--ds-space-2);
+    }
+
+    .studio-nav-link {
+      display: block;
+      padding: var(--ds-space-1) var(--ds-space-2);
+      color: var(--ds-text-muted);
+      text-decoration: none;
+      font-size: var(--ds-font-size-sm);
+      border-radius: var(--ds-radius-sm);
+      transition: all var(--ds-duration-fast) var(--ds-ease-smooth);
+      margin-bottom: 2px;
+    }
+
+    .studio-nav-link:hover {
+      color: var(--ds-text);
+      background: var(--ds-bg-elevated);
+    }
+
+    .studio-nav-link.active {
+      color: var(--ds-text);
+      background: var(--ds-accent-subtle);
+      font-weight: var(--ds-font-weight-medium);
+    }
+
+    /* ============================================
+       UTILITIES
+       ============================================ */
+
+    .container {
+      max-width: var(--ds-container-lg);
+      margin: 0 auto;
+      padding: 0 var(--ds-space-4);
+    }
+
+    .grid {
+      display: grid;
+      gap: var(--ds-space-6);
+    }
+
+    .grid-2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+    .grid-3 { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+
+    .flex { display: flex; }
+    .flex-col { flex-direction: column; }
+    .items-center { align-items: center; }
+    .justify-between { justify-content: space-between; }
+    .gap-1 { gap: var(--ds-space-1); }
+    .gap-2 { gap: var(--ds-space-2); }
+    .gap-4 { gap: var(--ds-space-4); }
+
+    .mb-0 { margin-bottom: 0; }
+    .mb-2 { margin-bottom: var(--ds-space-2); }
+    .mb-4 { margin-bottom: var(--ds-space-4); }
+    .mb-6 { margin-bottom: var(--ds-space-6); }
+    .mb-8 { margin-bottom: var(--ds-space-8); }
+
+    .mt-0 { margin-top: 0; }
+    .mt-8 { margin-top: var(--ds-space-8); }
+    .mt-12 { margin-top: var(--ds-space-12); }
+
+    /* Example Block */
+    .studio-example {
+      padding: var(--ds-space-6);
+      background: var(--ds-bg-elevated);
+      border: 1px solid var(--ds-border-subtle);
+      border-radius: var(--ds-radius-lg);
+      margin: var(--ds-space-4) 0;
+    }
+
+    /* Code Block */
+    .studio-code-block {
+      position: relative;
+      margin: var(--ds-space-4) 0;
+    }
+
+    .studio-code-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--ds-space-2) var(--ds-space-3);
+      background: var(--ds-bg-alt);
+      border: 1px solid var(--ds-border-subtle);
+      border-bottom: none;
+      border-radius: var(--ds-radius-md) var(--ds-radius-md) 0 0;
+      font-size: var(--ds-font-size-xs);
+      color: var(--ds-text-subtle);
+    }
+
+    /* Badge */
+    .studio-badge {
+      display: inline-flex;
+      align-items: center;
+      font-size: var(--ds-font-size-xs);
+      font-weight: var(--ds-font-weight-medium);
+      padding: 0.25em 0.75em;
+      border-radius: var(--ds-radius-full);
+      text-transform: uppercase;
+      letter-spacing: var(--ds-letter-wide);
+    }
+
+    .studio-badge--default {
+      background: var(--ds-gray-100);
+      color: var(--ds-text-muted);
+    }
+
+    .studio-badge--accent {
+      background: var(--ds-accent-subtle);
+      color: var(--ds-accent-dark);
+    }
+
+    .studio-badge--success {
+      background: rgba(95, 141, 78, 0.1);
+      color: var(--ds-success);
+    }
+
+    /* Divider */
+    .studio-divider {
+      height: 1px;
+      background: var(--ds-border-subtle);
+      margin: var(--ds-space-8) 0;
+    }
+
+    /* Progress */
+    .studio-progress {
+      width: 100%;
+      height: 4px;
+      background: var(--ds-border-subtle);
+      border-radius: var(--ds-radius-full);
+      overflow: hidden;
+    }
+
+    .studio-progress-bar {
+      height: 100%;
+      background: var(--ds-accent);
+      transition: width var(--ds-duration-slow) var(--ds-ease-smooth);
+    }
+
+    /* Modal */
+    .studio-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(8px);
+      z-index: var(--ds-z-modal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--ds-space-4);
+      opacity: 0;
+      visibility: hidden;
+      transition: all var(--ds-duration-normal) var(--ds-ease-smooth);
+    }
+
+    .studio-modal-overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .studio-modal {
+      background: var(--ds-bg-elevated);
+      border-radius: var(--ds-radius-xl);
+      box-shadow: var(--ds-shadow-xl);
+      max-width: 600px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      border: 1px solid var(--ds-border-subtle);
+      transform: scale(0.95) translateY(20px);
+      transition: transform var(--ds-duration-normal) var(--ds-ease-smooth);
+    }
+
+    .studio-modal-overlay.open .studio-modal {
+      transform: scale(1) translateY(0);
+    }
+
+    .studio-modal-header {
+      padding: var(--ds-space-6);
+      border-bottom: 1px solid var(--ds-border-subtle);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .studio-modal-title {
+      font-family: var(--ds-font-serif);
+      font-size: var(--ds-font-size-2xl);
+      font-weight: var(--ds-font-weight-semibold);
+      margin: 0;
+    }
+
+    .studio-modal-body {
+      padding: var(--ds-space-6);
+    }
+
+    .studio-modal-footer {
+      padding: var(--ds-space-6);
+      border-top: 1px solid var(--ds-border-subtle);
+      display: flex;
+      gap: var(--ds-space-2);
+      justify-content: flex-end;
+    }
+
+    /* Tabs */
+    .studio-tabs {
+      display: flex;
+      gap: var(--ds-space-1);
+      border-bottom: 1px solid var(--ds-border-subtle);
+      margin-bottom: var(--ds-space-6);
+    }
+
+    .studio-tab {
+      padding: var(--ds-space-2) var(--ds-space-4);
+      background: transparent;
+      border: none;
+      color: var(--ds-text-muted);
+      font-size: var(--ds-font-size-sm);
+      font-weight: var(--ds-font-weight-medium);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      transition: all var(--ds-duration-fast) var(--ds-ease-smooth);
+    }
+
+    .studio-tab:hover {
+      color: var(--ds-text);
+    }
+
+    .studio-tab.active {
+      color: var(--ds-text);
+      border-bottom-color: var(--ds-accent);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="studio-layout">
+    <!-- Header -->
+    <header class="studio-header">
+      <a href="#" class="studio-brand">Studio</a>
+
+      <div class="flex items-center gap-4">
+        <label class="studio-toggle">
+          <input type="checkbox" id="theme-toggle" aria-label="Toggle dark mode">
+          <span class="studio-toggle-track">
+            <span class="studio-toggle-thumb"></span>
+          </span>
+        </label>
+        <span style="font-size: var(--ds-font-size-sm); color: var(--ds-text-muted);">Dark</span>
+      </div>
+    </header>
+
+    <!-- Sidebar -->
+    <nav class="studio-sidebar">
+      <div class="studio-nav-section">
+        <div class="studio-nav-title">Foundations</div>
+        <ul class="studio-nav">
+          <li><a href="#intro" class="studio-nav-link">Introduction</a></li>
+          <li><a href="#typography" class="studio-nav-link">Typography</a></li>
+          <li><a href="#colors" class="studio-nav-link">Colors</a></li>
+          <li><a href="#spacing" class="studio-nav-link">Spacing</a></li>
+        </ul>
+      </div>
+
+      <div class="studio-nav-section">
+        <div class="studio-nav-title">Components</div>
+        <ul class="studio-nav">
+          <li><a href="#buttons" class="studio-nav-link">Buttons</a></li>
+          <li><a href="#inputs" class="studio-nav-link">Inputs</a></li>
+          <li><a href="#cards" class="studio-nav-link">Cards</a></li>
+          <li><a href="#alerts" class="studio-nav-link">Alerts</a></li>
+          <li><a href="#tables" class="studio-nav-link">Tables</a></li>
+          <li><a href="#modals" class="studio-nav-link">Modals</a></li>
+        </ul>
+      </div>
+
+      <div class="studio-nav-section">
+        <div class="studio-nav-title">Patterns</div>
+        <ul class="studio-nav">
+          <li><a href="#forms" class="studio-nav-link">Forms</a></li>
+          <li><a href="#layout" class="studio-nav-link">Layout</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="studio-main">
+      <!-- Introduction -->
+      <section id="intro">
+        <span class="caption mb-4" style="display: block;">Design System</span>
+        <h1>Studio</h1>
+        <p class="lead">A refined, minimal design system focused on exceptional typography, generous spacing, and sophisticated details.</p>
+
+        <div class="studio-divider"></div>
+
+        <h3>Philosophy</h3>
+        <p>Studio emphasizes clarity through minimalism. Every element serves a purpose. White space is intentional. Typography leads the hierarchy. Interactions are subtle but meaningful.</p>
+
+        <div class="grid-3 mt-8">
+          <div class="studio-card">
+            <h4>Refined</h4>
+            <p class="studio-card-text">Carefully considered design decisions create a polished, professional aesthetic.</p>
+          </div>
+
+          <div class="studio-card">
+            <h4>Accessible</h4>
+            <p class="studio-card-text">WCAG 2.2 AA compliant with semantic HTML and full keyboard support.</p>
+          </div>
+
+          <div class="studio-card">
+            <h4>Elegant</h4>
+            <p class="studio-card-text">Subtle animations and micro-interactions enhance the experience.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Typography -->
+      <section id="typography">
+        <h2>Typography</h2>
+        <p>Typography is the foundation of Studio. We use Fraunces for headings—a contemporary serif with personality—and Inter for body text, providing clarity and excellent readability.</p>
+
+        <div class="studio-example">
+          <h1 style="font-size: var(--ds-font-size-5xl); margin-bottom: var(--ds-space-3);">Display Heading</h1>
+          <h2 style="margin-top: 0;">Main Heading</h2>
+          <h3>Section Heading</h3>
+          <h4>Subsection Heading</h4>
+          <p class="lead">Lead paragraph with larger text for emphasis and important introductory content.</p>
+          <p>Regular paragraph text with comfortable line height for extended reading. The goal is maximum readability and a pleasant reading experience.</p>
+          <p style="font-size: var(--ds-font-size-sm);">Small text for captions, footnotes, and supplementary information.</p>
+        </div>
+
+        <h3>Type Scale</h3>
+        <div class="studio-example">
+          <table class="studio-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Size</th>
+                <th>Usage</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>--ds-font-size-xs</code></td>
+                <td>12px</td>
+                <td>Captions, labels</td>
+              </tr>
+              <tr>
+                <td><code>--ds-font-size-sm</code></td>
+                <td>14px</td>
+                <td>Small text, table data</td>
+              </tr>
+              <tr>
+                <td><code>--ds-font-size-base</code></td>
+                <td>16px</td>
+                <td>Body text</td>
+              </tr>
+              <tr>
+                <td><code>--ds-font-size-xl</code></td>
+                <td>20px</td>
+                <td>Lead paragraphs</td>
+              </tr>
+              <tr>
+                <td><code>--ds-font-size-4xl</code></td>
+                <td>40px</td>
+                <td>Section headings</td>
+              </tr>
+              <tr>
+                <td><code>--ds-font-size-6xl</code></td>
+                <td>72px</td>
+                <td>Display headings</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="studio-alert studio-alert--info">
+          <strong>Typography Pairing:</strong> Fraunces (serif) for headings provides elegance, while Inter (sans-serif) for body text ensures clarity and readability.
+        </div>
+      </section>
+
+      <!-- Colors -->
+      <section id="colors">
+        <h2>Colors</h2>
+        <p>Studio uses a restrained color palette focused on grays with a single accent color. This creates visual hierarchy through typography and spacing rather than color.</p>
+
+        <h3>Primary Palette</h3>
+        <div class="grid-3">
+          <div>
+            <div style="height: 120px; background: var(--ds-black); border-radius: var(--ds-radius-md); margin-bottom: var(--ds-space-2); border: 1px solid var(--ds-border);"></div>
+            <p style="font-size: var(--ds-font-size-sm); margin: 0;"><code>--ds-black</code></p>
+          </div>
+          <div>
+            <div style="height: 120px; background: var(--ds-accent); border-radius: var(--ds-radius-md); margin-bottom: var(--ds-space-2);"></div>
+            <p style="font-size: var(--ds-font-size-sm); margin: 0;"><code>--ds-accent</code></p>
+          </div>
+          <div>
+            <div style="height: 120px; background: var(--ds-white); border-radius: var(--ds-radius-md); margin-bottom: var(--ds-space-2); border: 1px solid var(--ds-border);"></div>
+            <p style="font-size: var(--ds-font-size-sm); margin: 0;"><code>--ds-white</code></p>
+          </div>
+        </div>
+
+        <h3>Gray Scale</h3>
+        <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));">
+          <div>
+            <div style="height: 80px; background: var(--ds-gray-50); border-radius: var(--ds-radius-sm); margin-bottom: var(--ds-space-1); border: 1px solid var(--ds-border);"></div>
+            <p style="font-size: var(--ds-font-size-xs); margin: 0;">50</p>
+          </div>
+          <div>
+            <div style="height: 80px; background: var(--ds-gray-100); border-radius: var(--ds-radius-sm); margin-bottom: var(--ds-space-1); border: 1px solid var(--ds-border);"></div>
+            <p style="font-size: var(--ds-font-size-xs); margin: 0;">100</p>
+          </div>
+          <div>
+            <div style="height: 80px; background: var(--ds-gray-200); border-radius: var(--ds-radius-sm); margin-bottom: var(--ds-space-1);"></div>
+            <p style="font-size: var(--ds-font-size-xs); margin: 0;">200</p>
+          </div>
+          <div>
+            <div style="height: 80px; background: var(--ds-gray-300); border-radius: var(--ds-radius-sm); margin-bottom: var(--ds-space-1);"></div>
+            <p style="font-size: var(--ds-font-size-xs); margin: 0;">300</p>
+          </div>
+          <div>
+            <div style="height: 80px; background: var(--ds-gray-400); border-radius: var(--ds-radius-sm); margin-bottom: var(--ds-space-1);"></div>
+            <p style="font-size: var(--ds-font-size-xs); margin: 0;">400</p>
+          </div>
+          <div>
+            <div style="height: 80px; background: var(--ds-gray-500); border-radius: var(--ds-radius-sm); margin-bottom: var(--ds-space-1);"></div>
+            <p style="font-size: var(--ds-font-size-xs); margin: 0; color: white;">500</p>
+          </div>
+          <div>
+            <div style="height: 80px; background: var(--ds-gray-600); border-radius: var(--ds-radius-sm); margin-bottom: var(--ds-space-1);"></div>
+            <p style="font-size: var(--ds-font-size-xs); margin: 0; color: white;">600</p>
+          </div>
+          <div>
+            <div style="height: 80px; background: var(--ds-gray-900); border-radius: var(--ds-radius-sm); margin-bottom: var(--ds-space-1);"></div>
+            <p style="font-size: var(--ds-font-size-xs); margin: 0; color: white;">900</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Spacing -->
+      <section id="spacing">
+        <h2>Spacing</h2>
+        <p>Generous, consistent spacing creates visual rhythm and hierarchy. Studio uses an 8px base unit for a harmonious spacing scale.</p>
+
+        <div class="studio-example">
+          <table class="studio-table">
+            <thead>
+              <tr>
+                <th>Token</th>
+                <th>Value</th>
+                <th>Visual</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>--ds-space-1</code></td>
+                <td>8px</td>
+                <td><div style="width: 8px; height: 24px; background: var(--ds-accent);"></div></td>
+              </tr>
+              <tr>
+                <td><code>--ds-space-2</code></td>
+                <td>16px</td>
+                <td><div style="width: 16px; height: 24px; background: var(--ds-accent);"></div></td>
+              </tr>
+              <tr>
+                <td><code>--ds-space-4</code></td>
+                <td>32px</td>
+                <td><div style="width: 32px; height: 24px; background: var(--ds-accent);"></div></td>
+              </tr>
+              <tr>
+                <td><code>--ds-space-6</code></td>
+                <td>48px</td>
+                <td><div style="width: 48px; height: 24px; background: var(--ds-accent);"></div></td>
+              </tr>
+              <tr>
+                <td><code>--ds-space-8</code></td>
+                <td>64px</td>
+                <td><div style="width: 64px; height: 24px; background: var(--ds-accent);"></div></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Buttons -->
+      <section id="buttons">
+        <h2>Buttons</h2>
+        <p>Refined button styles with subtle hover states and smooth transitions.</p>
+
+        <div class="studio-example">
+          <div class="flex gap-2" style="flex-wrap: wrap;">
+            <button class="studio-btn studio-btn--primary">Primary</button>
+            <button class="studio-btn studio-btn--secondary">Secondary</button>
+            <button class="studio-btn studio-btn--outline">Outline</button>
+            <button class="studio-btn studio-btn--ghost">Ghost</button>
+          </div>
+
+          <div class="studio-divider"></div>
+
+          <div class="flex gap-2 items-center" style="flex-wrap: wrap;">
+            <button class="studio-btn studio-btn--primary studio-btn--sm">Small</button>
+            <button class="studio-btn studio-btn--primary">Medium</button>
+            <button class="studio-btn studio-btn--primary studio-btn--lg">Large</button>
+          </div>
+        </div>
+
+        <div class="studio-code-block">
+          <div class="studio-code-header">
+            <span>HTML</span>
+            <button class="studio-btn studio-btn--ghost studio-btn--sm" onclick="STUDIO.copyCode('btn-code')">Copy</button>
+          </div>
+          <pre id="btn-code"><code>&lt;button class="studio-btn studio-btn--primary"&gt;Primary&lt;/button&gt;
+&lt;button class="studio-btn studio-btn--outline"&gt;Outline&lt;/button&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- Inputs -->
+      <section id="inputs">
+        <h2>Inputs</h2>
+        <p>Clean form controls with elegant focus states.</p>
+
+        <div class="studio-example">
+          <div style="max-width: 500px;">
+            <div style="margin-bottom: var(--ds-space-4);">
+              <label class="studio-label">Email Address</label>
+              <input type="email" class="studio-input" placeholder="name@example.com">
+            </div>
+
+            <div style="margin-bottom: var(--ds-space-4);">
+              <label class="studio-label">Message</label>
+              <textarea class="studio-textarea" placeholder="Your message"></textarea>
+            </div>
+
+            <div style="margin-bottom: var(--ds-space-4);">
+              <label class="studio-label">Country</label>
+              <select class="studio-select">
+                <option>United States</option>
+                <option>Canada</option>
+                <option>United Kingdom</option>
+                <option>Australia</option>
+              </select>
+            </div>
+
+            <label class="studio-checkbox">
+              <input type="checkbox" checked>
+              <span class="studio-checkbox-box"></span>
+              <span>I agree to the terms</span>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- Cards -->
+      <section id="cards">
+        <h2>Cards</h2>
+        <p>Minimal cards with subtle borders and smooth hover effects.</p>
+
+        <div class="grid-2">
+          <div class="studio-card">
+            <span class="studio-badge studio-badge--accent mb-2">Featured</span>
+            <h3 class="studio-card-title">Card Title</h3>
+            <p class="studio-card-text mb-4">This is a minimal card component with clean typography and generous spacing. Hover to see the subtle elevation change.</p>
+            <button class="studio-btn studio-btn--outline studio-btn--sm">Learn More</button>
+          </div>
+
+          <div class="studio-card">
+            <h3 class="studio-card-title">Another Card</h3>
+            <p class="studio-card-text mb-4">Cards feature refined borders, subtle shadows, and smooth transitions on hover.</p>
+            <div class="studio-progress mb-2">
+              <div class="studio-progress-bar" style="width: 65%;"></div>
+            </div>
+            <p style="font-size: var(--ds-font-size-sm); color: var(--ds-text-subtle); margin: 0;">65% Complete</p>
+          </div>
+
+          <div class="studio-card">
+            <h3 class="studio-card-title">Elegant Design</h3>
+            <p class="studio-card-text">Focus on typography, spacing, and subtle interactions creates a sophisticated experience.</p>
+          </div>
+
+          <div class="studio-card">
+            <h3 class="studio-card-title">Accessible</h3>
+            <p class="studio-card-text mb-4">Full keyboard navigation, semantic HTML, and ARIA labels ensure everyone can use the interface.</p>
+            <span class="studio-badge studio-badge--success">WCAG AA</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Alerts -->
+      <section id="alerts">
+        <h2>Alerts</h2>
+        <p>Subtle notification messages with minimal styling.</p>
+
+        <div class="studio-example">
+          <div class="studio-alert studio-alert--info">
+            <strong>Info:</strong> This is an informational message.
+          </div>
+
+          <div class="studio-alert studio-alert--success">
+            <strong>Success:</strong> Your changes have been saved.
+          </div>
+
+          <div class="studio-alert studio-alert--warning">
+            <strong>Warning:</strong> Please review before proceeding.
+          </div>
+
+          <div class="studio-alert studio-alert--danger">
+            <strong>Error:</strong> Something went wrong.
+          </div>
+        </div>
+      </section>
+
+      <!-- Tables -->
+      <section id="tables">
+        <h2>Tables</h2>
+        <p>Clean, readable tables with refined typography.</p>
+
+        <div class="studio-example">
+          <table class="studio-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="font-weight: var(--ds-font-weight-medium); color: var(--ds-text);">Olivia Chen</td>
+                <td>olivia@example.com</td>
+                <td>Designer</td>
+                <td><span class="studio-badge studio-badge--success">Active</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight: var(--ds-font-weight-medium); color: var(--ds-text);">Marcus Johnson</td>
+                <td>marcus@example.com</td>
+                <td>Developer</td>
+                <td><span class="studio-badge studio-badge--success">Active</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight: var(--ds-font-weight-medium); color: var(--ds-text);">Sophie Williams</td>
+                <td>sophie@example.com</td>
+                <td>Product Manager</td>
+                <td><span class="studio-badge studio-badge--default">Pending</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight: var(--ds-font-weight-medium); color: var(--ds-text);">James Anderson</td>
+                <td>james@example.com</td>
+                <td>Engineer</td>
+                <td><span class="studio-badge studio-badge--success">Active</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Modals -->
+      <section id="modals">
+        <h2>Modals</h2>
+        <p>Elegant modal dialogs with smooth entrance animations.</p>
+
+        <div class="studio-example">
+          <button class="studio-btn studio-btn--primary" onclick="STUDIO.openModal('demo-modal')">
+            Open Modal
+          </button>
+        </div>
+      </section>
+
+      <!-- Forms Pattern -->
+      <section id="forms">
+        <h2>Form Patterns</h2>
+        <p>Complete form examples with validation and clean styling.</p>
+
+        <div class="studio-card" style="max-width: 600px;">
+          <h3>Contact Form</h3>
+          <p style="color: var(--ds-text-muted); margin-bottom: var(--ds-space-6);">Get in touch with our team.</p>
+
+          <form>
+            <div style="margin-bottom: var(--ds-space-4);">
+              <label class="studio-label">Full Name</label>
+              <input type="text" class="studio-input" placeholder="John Doe" required>
+            </div>
+
+            <div style="margin-bottom: var(--ds-space-4);">
+              <label class="studio-label">Email</label>
+              <input type="email" class="studio-input" placeholder="john@example.com" required>
+            </div>
+
+            <div style="margin-bottom: var(--ds-space-4);">
+              <label class="studio-label">Subject</label>
+              <select class="studio-select" required>
+                <option>General Inquiry</option>
+                <option>Technical Support</option>
+                <option>Partnership</option>
+              </select>
+            </div>
+
+            <div style="margin-bottom: var(--ds-space-4);">
+              <label class="studio-label">Message</label>
+              <textarea class="studio-textarea" placeholder="Your message" required></textarea>
+            </div>
+
+            <label class="studio-checkbox" style="margin-bottom: var(--ds-space-6);">
+              <input type="checkbox" required>
+              <span class="studio-checkbox-box"></span>
+              <span>I agree to the privacy policy</span>
+            </label>
+
+            <div class="flex gap-2">
+              <button type="submit" class="studio-btn studio-btn--primary">Send Message</button>
+              <button type="reset" class="studio-btn studio-btn--ghost">Clear</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- Layout Pattern -->
+      <section id="layout">
+        <h2>Layout Patterns</h2>
+        <p>Clean, organized layouts with consistent spacing.</p>
+
+        <div class="grid-3">
+          <div class="studio-card">
+            <span class="caption mb-2" style="display: block; color: var(--ds-accent);">Metric</span>
+            <h2 style="font-size: var(--ds-font-size-4xl); margin: 0 0 var(--ds-space-1) 0;">2,847</h2>
+            <p style="margin: 0; font-size: var(--ds-font-size-sm);">Total Users</p>
+          </div>
+
+          <div class="studio-card">
+            <span class="caption mb-2" style="display: block; color: var(--ds-accent);">Metric</span>
+            <h2 style="font-size: var(--ds-font-size-4xl); margin: 0 0 var(--ds-space-1) 0;">$142K</h2>
+            <p style="margin: 0; font-size: var(--ds-font-size-sm);">Revenue</p>
+          </div>
+
+          <div class="studio-card">
+            <span class="caption mb-2" style="display: block; color: var(--ds-accent);">Metric</span>
+            <h2 style="font-size: var(--ds-font-size-4xl); margin: 0 0 var(--ds-space-1) 0;">98.2%</h2>
+            <p style="margin: 0; font-size: var(--ds-font-size-sm);">Satisfaction</p>
+          </div>
+        </div>
+
+        <div class="studio-divider"></div>
+
+        <div class="studio-card">
+          <div class="flex justify-between items-center mb-6">
+            <h3 style="margin: 0;">Recent Projects</h3>
+            <button class="studio-btn studio-btn--ghost studio-btn--sm">View All</button>
+          </div>
+
+          <table class="studio-table">
+            <thead>
+              <tr>
+                <th>Project</th>
+                <th>Client</th>
+                <th>Progress</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="font-weight: var(--ds-font-weight-medium); color: var(--ds-text);">Website Redesign</td>
+                <td>Acme Corp</td>
+                <td>
+                  <div class="studio-progress">
+                    <div class="studio-progress-bar" style="width: 85%;"></div>
+                  </div>
+                </td>
+                <td><span class="studio-badge studio-badge--success">Active</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight: var(--ds-font-weight-medium); color: var(--ds-text);">Brand Identity</td>
+                <td>TechStart</td>
+                <td>
+                  <div class="studio-progress">
+                    <div class="studio-progress-bar" style="width: 45%;"></div>
+                  </div>
+                </td>
+                <td><span class="studio-badge studio-badge--default">In Progress</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight: var(--ds-font-weight-medium); color: var(--ds-text);">Mobile App</td>
+                <td>Startup Inc</td>
+                <td>
+                  <div class="studio-progress">
+                    <div class="studio-progress-bar" style="width: 100%;"></div>
+                  </div>
+                </td>
+                <td><span class="studio-badge studio-badge--success">Complete</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <div class="studio-divider mt-12"></div>
+      <footer style="text-align: center; padding: var(--ds-space-8) 0;">
+        <p style="font-family: var(--ds-font-serif); font-size: var(--ds-font-size-2xl); margin-bottom: var(--ds-space-2);">Studio</p>
+        <p style="color: var(--ds-text-muted); margin-bottom: var(--ds-space-2);">v1.0.0 — Generated 2025-11-11</p>
+        <p style="color: var(--ds-text-subtle); font-size: var(--ds-font-size-sm);">Refined. Minimal. Sophisticated.</p>
+        <div class="flex gap-2 justify-center" style="margin-top: var(--ds-space-4); flex-wrap: wrap;">
+          <span class="studio-badge studio-badge--default">MIT License</span>
+          <span class="studio-badge studio-badge--success">WCAG AA</span>
+          <span class="studio-badge studio-badge--accent">Awwwards Worthy</span>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <!-- Modal -->
+  <div class="studio-modal-overlay" id="demo-modal" role="dialog" aria-modal="true">
+    <div class="studio-modal">
+      <div class="studio-modal-header">
+        <h2 class="studio-modal-title">Modal Dialog</h2>
+        <button class="studio-btn studio-btn--ghost studio-btn--sm" onclick="STUDIO.closeModal('demo-modal')" aria-label="Close">
+          <span style="font-size: 20px;">×</span>
+        </button>
+      </div>
+      <div class="studio-modal-body">
+        <p>This is a refined modal dialog with smooth entrance animation and subtle backdrop blur.</p>
+        <p>Press Escape or click outside to dismiss.</p>
+
+        <div class="studio-alert studio-alert--info" style="margin-top: var(--ds-space-4);">
+          <strong>Note:</strong> All interactions respect reduced motion preferences.
+        </div>
+      </div>
+      <div class="studio-modal-footer">
+        <button class="studio-btn studio-btn--ghost" onclick="STUDIO.closeModal('demo-modal')">Cancel</button>
+        <button class="studio-btn studio-btn--primary" onclick="STUDIO.closeModal('demo-modal')">Confirm</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    window.STUDIO = (function() {
+      'use strict';
+
+      function init() {
+        setupTheme();
+        setupNav();
+        setupModals();
+      }
+
+      function setupTheme() {
+        const toggle = document.getElementById('theme-toggle');
+        const saved = localStorage.getItem('studio-theme') || 'light';
+
+        document.documentElement.setAttribute('data-theme', saved);
+        if (toggle) {
+          toggle.checked = saved === 'dark';
+          toggle.addEventListener('change', (e) => {
+            const theme = e.target.checked ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('studio-theme', theme);
+          });
+        }
+      }
+
+      function setupNav() {
+        const links = document.querySelectorAll('.studio-nav-link');
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const id = entry.target.getAttribute('id');
+              links.forEach(link => {
+                link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+              });
+            }
+          });
+        }, { rootMargin: '-20% 0px -70% 0px' });
+
+        document.querySelectorAll('section[id]').forEach(section => observer.observe(section));
+
+        links.forEach(link => {
+          link.addEventListener('click', (e) => {
+            const targetId = link.getAttribute('href').slice(1);
+            const target = document.getElementById(targetId);
+            if (target) {
+              e.preventDefault();
+              target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              history.pushState(null, '', '#' + targetId);
+            }
+          });
+        });
+      }
+
+      function setupModals() {
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') {
+            document.querySelectorAll('.studio-modal-overlay.open').forEach(modal => {
+              modal.classList.remove('open');
+              document.body.style.overflow = '';
+            });
+          }
+        });
+
+        document.querySelectorAll('.studio-modal-overlay').forEach(overlay => {
+          overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) {
+              overlay.classList.remove('open');
+              document.body.style.overflow = '';
+            }
+          });
+        });
+      }
+
+      function openModal(id) {
+        const modal = document.getElementById(id);
+        if (modal) {
+          modal.classList.add('open');
+          document.body.style.overflow = 'hidden';
+        }
+      }
+
+      function closeModal(id) {
+        const modal = document.getElementById(id);
+        if (modal) {
+          modal.classList.remove('open');
+          document.body.style.overflow = '';
+        }
+      }
+
+      function copyCode(id) {
+        const element = document.getElementById(id);
+        if (!element) return;
+        navigator.clipboard.writeText(element.textContent);
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+
+      return { openModal, closeModal, copyCode };
+    })();
+  </script>
+</body>
+</html>

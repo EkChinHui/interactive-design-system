@@ -1,0 +1,1990 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="neon" data-density="comfortable" data-build="2025-11-11T00:00:00Z">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="Fresh Design System v1.0.0">
+  <title>FRESH - Bold Design System</title>
+  <style>
+    /* ============================================
+       FRESH DESIGN TOKENS 🎨
+       ============================================ */
+
+    :root,
+    :root[data-theme="neon"] {
+      /* Bold Color System */
+      --ds-bg: #0a0e27;
+      --ds-bg-muted: #12172e;
+      --ds-bg-elevated: #1a1f3a;
+      --ds-surface: #1e2442;
+      --ds-surface-glass: rgba(30, 36, 66, 0.6);
+
+      --ds-text: #ffffff;
+      --ds-text-muted: #a0a8d4;
+      --ds-text-dim: #6b7199;
+
+      /* Vibrant Accent Colors */
+      --ds-primary: #00f5ff;
+      --ds-primary-glow: rgba(0, 245, 255, 0.5);
+      --ds-secondary: #ff00ff;
+      --ds-accent: #ffff00;
+
+      /* Gradient Magic */
+      --ds-gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --ds-gradient-fire: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
+      --ds-gradient-ocean: linear-gradient(135deg, #00f5ff 0%, #00b4d8 100%);
+      --ds-gradient-sunset: linear-gradient(135deg, #ff6b6b 0%, #ff00ff 100%);
+      --ds-gradient-neon: linear-gradient(135deg, #00f5ff 0%, #ff00ff 50%, #ffff00 100%);
+      --ds-gradient-cyber: linear-gradient(135deg, #667eea 0%, #00f5ff 100%);
+
+      /* Status Colors - Bold Edition */
+      --ds-success: #00ff88;
+      --ds-success-glow: rgba(0, 255, 136, 0.4);
+      --ds-warning: #ffaa00;
+      --ds-warning-glow: rgba(255, 170, 0, 0.4);
+      --ds-danger: #ff0055;
+      --ds-danger-glow: rgba(255, 0, 85, 0.4);
+      --ds-info: #00f5ff;
+      --ds-info-glow: rgba(0, 245, 255, 0.4);
+
+      /* Border & Effects */
+      --ds-border: rgba(255, 255, 255, 0.1);
+      --ds-border-bright: rgba(255, 255, 255, 0.2);
+      --ds-border-neon: rgba(0, 245, 255, 0.5);
+
+      /* Shadows - Bold & Glowy */
+      --ds-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+      --ds-shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+      --ds-shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
+      --ds-shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.6);
+
+      --ds-shadow-glow-primary: 0 0 20px var(--ds-primary-glow);
+      --ds-shadow-glow-success: 0 0 20px var(--ds-success-glow);
+      --ds-shadow-glow-danger: 0 0 20px var(--ds-danger-glow);
+
+      /* Typography - Bold & Modern */
+      --ds-font-display: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+      --ds-font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+      --ds-font-mono: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+
+      --ds-font-size-xs: 0.75rem;
+      --ds-font-size-sm: 0.875rem;
+      --ds-font-size-base: 1rem;
+      --ds-font-size-lg: 1.125rem;
+      --ds-font-size-xl: 1.25rem;
+      --ds-font-size-2xl: 1.5rem;
+      --ds-font-size-3xl: 2rem;
+      --ds-font-size-4xl: 2.5rem;
+      --ds-font-size-5xl: 3rem;
+      --ds-font-size-6xl: 4rem;
+
+      --ds-font-weight-normal: 400;
+      --ds-font-weight-medium: 500;
+      --ds-font-weight-semibold: 600;
+      --ds-font-weight-bold: 700;
+      --ds-font-weight-black: 900;
+
+      --ds-line-tight: 1.2;
+      --ds-line-normal: 1.5;
+      --ds-line-relaxed: 1.75;
+
+      /* Spacing - Generous & Breathable */
+      --ds-space-0: 0;
+      --ds-space-1: 0.25rem;
+      --ds-space-2: 0.5rem;
+      --ds-space-3: 0.75rem;
+      --ds-space-4: 1rem;
+      --ds-space-5: 1.5rem;
+      --ds-space-6: 2rem;
+      --ds-space-8: 3rem;
+      --ds-space-10: 4rem;
+      --ds-space-12: 6rem;
+      --ds-space-16: 8rem;
+
+      /* Radius - Curvy & Smooth */
+      --ds-radius-sm: 0.5rem;
+      --ds-radius-md: 1rem;
+      --ds-radius-lg: 1.5rem;
+      --ds-radius-xl: 2rem;
+      --ds-radius-full: 9999px;
+
+      /* Motion - Snappy & Smooth */
+      --ds-duration-instant: 100ms;
+      --ds-duration-fast: 200ms;
+      --ds-duration-normal: 300ms;
+      --ds-duration-slow: 500ms;
+
+      --ds-ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+      --ds-ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      --ds-ease-in: cubic-bezier(0.4, 0, 1, 1);
+      --ds-ease-out: cubic-bezier(0, 0, 0.2, 1);
+
+      /* Z-Index */
+      --ds-z-base: 0;
+      --ds-z-dropdown: 100;
+      --ds-z-sticky: 200;
+      --ds-z-overlay: 500;
+      --ds-z-modal: 600;
+      --ds-z-toast: 700;
+
+      /* Glass Effect */
+      --ds-glass-bg: rgba(30, 36, 66, 0.7);
+      --ds-glass-border: rgba(255, 255, 255, 0.18);
+      --ds-glass-blur: blur(12px);
+    }
+
+    /* Light Theme - Still Bold! */
+    :root[data-theme="light"] {
+      --ds-bg: #f5f7ff;
+      --ds-bg-muted: #e8ecff;
+      --ds-bg-elevated: #ffffff;
+      --ds-surface: #ffffff;
+      --ds-surface-glass: rgba(255, 255, 255, 0.7);
+
+      --ds-text: #1a1f3a;
+      --ds-text-muted: #4a5578;
+      --ds-text-dim: #6b7199;
+
+      --ds-border: rgba(0, 0, 0, 0.1);
+      --ds-border-bright: rgba(0, 0, 0, 0.15);
+
+      --ds-glass-bg: rgba(255, 255, 255, 0.7);
+      --ds-glass-border: rgba(0, 0, 0, 0.1);
+    }
+
+    /* Compact Mode */
+    :root[data-density="compact"] {
+      --ds-space-4: 0.75rem;
+      --ds-space-5: 1rem;
+      --ds-space-6: 1.5rem;
+    }
+
+    /* ============================================
+       BASE STYLES & RESET
+       ============================================ */
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      font-family: var(--ds-font-sans);
+      font-size: 16px;
+      line-height: var(--ds-line-normal);
+      color: var(--ds-text);
+      background: var(--ds-bg);
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+      background:
+        radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(118, 75, 162, 0.1) 0%, transparent 50%),
+        var(--ds-bg);
+    }
+
+    ::selection {
+      background: var(--ds-primary);
+      color: var(--ds-bg);
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 12px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--ds-bg-muted);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--ds-gradient-cyber);
+      border-radius: var(--ds-radius-full);
+      border: 2px solid var(--ds-bg-muted);
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--ds-gradient-primary);
+    }
+
+    /* ============================================
+       LAYOUT
+       ============================================ */
+
+    .fresh-layout {
+      display: grid;
+      grid-template-areas:
+        "header header"
+        "sidebar main"
+        "footer footer";
+      grid-template-columns: 300px 1fr;
+      grid-template-rows: auto 1fr auto;
+      min-height: 100vh;
+    }
+
+    .fresh-header {
+      grid-area: header;
+      position: sticky;
+      top: 0;
+      z-index: var(--ds-z-sticky);
+      background: var(--ds-glass-bg);
+      backdrop-filter: var(--ds-glass-blur);
+      -webkit-backdrop-filter: var(--ds-glass-blur);
+      border-bottom: 1px solid var(--ds-border);
+      padding: var(--ds-space-4) var(--ds-space-6);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .fresh-brand {
+      font-family: var(--ds-font-display);
+      font-size: var(--ds-font-size-2xl);
+      font-weight: var(--ds-font-weight-black);
+      background: var(--ds-gradient-neon);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-decoration: none;
+      letter-spacing: -0.02em;
+      animation: gradient-shift 3s ease infinite;
+      background-size: 200% 200%;
+    }
+
+    @keyframes gradient-shift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    .fresh-sidebar {
+      grid-area: sidebar;
+      background: var(--ds-bg-muted);
+      border-right: 1px solid var(--ds-border);
+      padding: var(--ds-space-6);
+      overflow-y: auto;
+      height: calc(100vh - 80px);
+      position: sticky;
+      top: 80px;
+    }
+
+    .fresh-main {
+      grid-area: main;
+      padding: var(--ds-space-8) var(--ds-space-6);
+      max-width: 1400px;
+    }
+
+    .fresh-footer {
+      grid-area: footer;
+      background: var(--ds-bg-elevated);
+      border-top: 1px solid var(--ds-border);
+      padding: var(--ds-space-8);
+      text-align: center;
+    }
+
+    @media (max-width: 968px) {
+      .fresh-layout {
+        grid-template-areas: "header" "main" "footer";
+        grid-template-columns: 1fr;
+      }
+      .fresh-sidebar { display: none; }
+    }
+
+    /* ============================================
+       TYPOGRAPHY - BOLD & FRESH
+       ============================================ */
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--ds-font-display);
+      font-weight: var(--ds-font-weight-black);
+      line-height: var(--ds-line-tight);
+      letter-spacing: -0.02em;
+      margin-bottom: var(--ds-space-4);
+    }
+
+    h1 {
+      font-size: var(--ds-font-size-6xl);
+      background: var(--ds-gradient-neon);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradient-shift 3s ease infinite;
+      background-size: 200% 200%;
+    }
+
+    h2 {
+      font-size: var(--ds-font-size-4xl);
+      margin-top: var(--ds-space-10);
+      position: relative;
+      padding-bottom: var(--ds-space-3);
+    }
+
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 60px;
+      height: 4px;
+      background: var(--ds-gradient-cyber);
+      border-radius: var(--ds-radius-full);
+    }
+
+    h3 {
+      font-size: var(--ds-font-size-2xl);
+      margin-top: var(--ds-space-6);
+      color: var(--ds-primary);
+    }
+
+    p {
+      margin-bottom: var(--ds-space-4);
+      color: var(--ds-text-muted);
+      line-height: var(--ds-line-relaxed);
+    }
+
+    code {
+      font-family: var(--ds-font-mono);
+      font-size: 0.9em;
+      background: var(--ds-bg-elevated);
+      padding: var(--ds-space-1) var(--ds-space-2);
+      border-radius: var(--ds-radius-sm);
+      border: 1px solid var(--ds-border);
+      color: var(--ds-primary);
+    }
+
+    pre {
+      background: var(--ds-bg-elevated);
+      padding: var(--ds-space-5);
+      border-radius: var(--ds-radius-lg);
+      border: 1px solid var(--ds-border);
+      overflow-x: auto;
+      margin: var(--ds-space-5) 0;
+      box-shadow: var(--ds-shadow-md);
+    }
+
+    pre code {
+      background: none;
+      padding: 0;
+      border: none;
+    }
+
+    /* ============================================
+       BUTTONS - BOLD & GLOWY
+       ============================================ */
+
+    .fresh-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--ds-space-2);
+      font-family: var(--ds-font-sans);
+      font-size: var(--ds-font-size-base);
+      font-weight: var(--ds-font-weight-bold);
+      padding: var(--ds-space-3) var(--ds-space-6);
+      border-radius: var(--ds-radius-full);
+      border: none;
+      cursor: pointer;
+      transition: all var(--ds-duration-fast) var(--ds-ease-smooth);
+      text-decoration: none;
+      white-space: nowrap;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .fresh-btn::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      transform: translate(-50%, -50%);
+      transition: width var(--ds-duration-normal) var(--ds-ease-smooth),
+                  height var(--ds-duration-normal) var(--ds-ease-smooth);
+    }
+
+    .fresh-btn:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+
+    .fresh-btn:active {
+      transform: scale(0.95);
+    }
+
+    /* Primary - Gradient Glow */
+    .fresh-btn--primary {
+      background: var(--ds-gradient-cyber);
+      color: white;
+      box-shadow: var(--ds-shadow-glow-primary);
+    }
+
+    .fresh-btn--primary:hover {
+      box-shadow: 0 0 30px var(--ds-primary-glow), var(--ds-shadow-lg);
+      transform: translateY(-2px);
+    }
+
+    /* Gradient Fire */
+    .fresh-btn--fire {
+      background: var(--ds-gradient-fire);
+      color: white;
+      box-shadow: 0 0 20px rgba(255, 107, 107, 0.4);
+    }
+
+    .fresh-btn--fire:hover {
+      box-shadow: 0 0 30px rgba(255, 107, 107, 0.6), var(--ds-shadow-lg);
+      transform: translateY(-2px);
+    }
+
+    /* Outline - Neon Border */
+    .fresh-btn--outline {
+      background: transparent;
+      color: var(--ds-primary);
+      border: 2px solid var(--ds-primary);
+      box-shadow: 0 0 10px var(--ds-primary-glow);
+    }
+
+    .fresh-btn--outline:hover {
+      background: var(--ds-primary);
+      color: var(--ds-bg);
+      box-shadow: 0 0 25px var(--ds-primary-glow);
+    }
+
+    /* Ghost - Subtle Glass */
+    .fresh-btn--ghost {
+      background: var(--ds-glass-bg);
+      backdrop-filter: var(--ds-glass-blur);
+      color: var(--ds-text);
+      border: 1px solid var(--ds-glass-border);
+    }
+
+    .fresh-btn--ghost:hover {
+      background: var(--ds-surface);
+      border-color: var(--ds-border-bright);
+    }
+
+    /* Danger - Red Glow */
+    .fresh-btn--danger {
+      background: var(--ds-gradient-sunset);
+      color: white;
+      box-shadow: var(--ds-shadow-glow-danger);
+    }
+
+    .fresh-btn--danger:hover {
+      box-shadow: 0 0 30px var(--ds-danger-glow), var(--ds-shadow-lg);
+      transform: translateY(-2px);
+    }
+
+    /* Button Sizes */
+    .fresh-btn--sm {
+      padding: var(--ds-space-2) var(--ds-space-4);
+      font-size: var(--ds-font-size-sm);
+    }
+
+    .fresh-btn--lg {
+      padding: var(--ds-space-4) var(--ds-space-8);
+      font-size: var(--ds-font-size-lg);
+    }
+
+    /* ============================================
+       CARDS - GLASS & GLOW
+       ============================================ */
+
+    .fresh-card {
+      background: var(--ds-glass-bg);
+      backdrop-filter: var(--ds-glass-blur);
+      border: 1px solid var(--ds-glass-border);
+      border-radius: var(--ds-radius-xl);
+      padding: var(--ds-space-6);
+      box-shadow: var(--ds-shadow-lg);
+      transition: all var(--ds-duration-normal) var(--ds-ease-smooth);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .fresh-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--ds-gradient-neon);
+    }
+
+    .fresh-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--ds-shadow-xl), 0 0 40px rgba(0, 245, 255, 0.2);
+      border-color: var(--ds-border-bright);
+    }
+
+    .fresh-card-glow {
+      position: relative;
+    }
+
+    .fresh-card-glow::after {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      background: var(--ds-gradient-neon);
+      border-radius: var(--ds-radius-xl);
+      z-index: -1;
+      opacity: 0;
+      transition: opacity var(--ds-duration-normal) var(--ds-ease-smooth);
+    }
+
+    .fresh-card-glow:hover::after {
+      opacity: 0.5;
+    }
+
+    /* ============================================
+       INPUTS - SLEEK & MODERN
+       ============================================ */
+
+    .fresh-input,
+    .fresh-textarea,
+    .fresh-select {
+      font-family: var(--ds-font-sans);
+      font-size: var(--ds-font-size-base);
+      color: var(--ds-text);
+      background: var(--ds-surface);
+      border: 2px solid var(--ds-border);
+      border-radius: var(--ds-radius-lg);
+      padding: var(--ds-space-3) var(--ds-space-4);
+      width: 100%;
+      transition: all var(--ds-duration-fast) var(--ds-ease-smooth);
+    }
+
+    .fresh-input:focus,
+    .fresh-textarea:focus,
+    .fresh-select:focus {
+      outline: none;
+      border-color: var(--ds-primary);
+      box-shadow: 0 0 0 3px var(--ds-primary-glow), var(--ds-shadow-glow-primary);
+    }
+
+    .fresh-input:hover,
+    .fresh-textarea:hover,
+    .fresh-select:hover {
+      border-color: var(--ds-border-bright);
+    }
+
+    .fresh-textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    /* Custom Checkbox - Neon Style */
+    .fresh-checkbox {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--ds-space-3);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .fresh-checkbox input {
+      position: absolute;
+      opacity: 0;
+    }
+
+    .fresh-checkbox-box {
+      width: 24px;
+      height: 24px;
+      border: 2px solid var(--ds-primary);
+      border-radius: var(--ds-radius-sm);
+      background: transparent;
+      transition: all var(--ds-duration-fast) var(--ds-ease-bounce);
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .fresh-checkbox input:checked + .fresh-checkbox-box {
+      background: var(--ds-gradient-cyber);
+      border-color: var(--ds-primary);
+      box-shadow: var(--ds-shadow-glow-primary);
+    }
+
+    .fresh-checkbox input:checked + .fresh-checkbox-box::after {
+      content: '✓';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    /* Toggle Switch - Glowing */
+    .fresh-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--ds-space-3);
+      cursor: pointer;
+    }
+
+    .fresh-toggle input {
+      position: absolute;
+      opacity: 0;
+    }
+
+    .fresh-toggle-track {
+      width: 52px;
+      height: 28px;
+      background: var(--ds-surface);
+      border: 2px solid var(--ds-border);
+      border-radius: var(--ds-radius-full);
+      position: relative;
+      transition: all var(--ds-duration-normal) var(--ds-ease-smooth);
+    }
+
+    .fresh-toggle-thumb {
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 20px;
+      height: 20px;
+      background: var(--ds-text-muted);
+      border-radius: var(--ds-radius-full);
+      transition: all var(--ds-duration-normal) var(--ds-ease-bounce);
+      box-shadow: var(--ds-shadow-sm);
+    }
+
+    .fresh-toggle input:checked + .fresh-toggle-track {
+      background: var(--ds-gradient-cyber);
+      border-color: var(--ds-primary);
+      box-shadow: var(--ds-shadow-glow-primary);
+    }
+
+    .fresh-toggle input:checked + .fresh-toggle-track .fresh-toggle-thumb {
+      transform: translateX(24px);
+      background: white;
+    }
+
+    /* ============================================
+       ALERTS - BOLD & GLOWING
+       ============================================ */
+
+    .fresh-alert {
+      padding: var(--ds-space-4);
+      border-radius: var(--ds-radius-lg);
+      border-left: 4px solid;
+      margin: var(--ds-space-5) 0;
+      display: flex;
+      gap: var(--ds-space-3);
+      align-items: flex-start;
+      backdrop-filter: blur(8px);
+      animation: slideIn var(--ds-duration-normal) var(--ds-ease-out);
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateX(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .fresh-alert--info {
+      background: rgba(0, 245, 255, 0.1);
+      border-color: var(--ds-info);
+      color: var(--ds-info);
+    }
+
+    .fresh-alert--success {
+      background: rgba(0, 255, 136, 0.1);
+      border-color: var(--ds-success);
+      color: var(--ds-success);
+    }
+
+    .fresh-alert--warning {
+      background: rgba(255, 170, 0, 0.1);
+      border-color: var(--ds-warning);
+      color: var(--ds-warning);
+    }
+
+    .fresh-alert--danger {
+      background: rgba(255, 0, 85, 0.1);
+      border-color: var(--ds-danger);
+      color: var(--ds-danger);
+    }
+
+    /* ============================================
+       BADGES - NEON STYLE
+       ============================================ */
+
+    .fresh-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--ds-font-size-xs);
+      font-weight: var(--ds-font-weight-bold);
+      padding: var(--ds-space-1) var(--ds-space-3);
+      border-radius: var(--ds-radius-full);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .fresh-badge--primary {
+      background: var(--ds-gradient-cyber);
+      color: white;
+      box-shadow: var(--ds-shadow-glow-primary);
+    }
+
+    .fresh-badge--success {
+      background: var(--ds-success);
+      color: var(--ds-bg);
+      box-shadow: var(--ds-shadow-glow-success);
+    }
+
+    .fresh-badge--warning {
+      background: var(--ds-warning);
+      color: var(--ds-bg);
+      box-shadow: 0 0 15px var(--ds-warning-glow);
+    }
+
+    .fresh-badge--danger {
+      background: var(--ds-danger);
+      color: white;
+      box-shadow: var(--ds-shadow-glow-danger);
+    }
+
+    /* ============================================
+       TABLES - MODERN & CLEAN
+       ============================================ */
+
+    .fresh-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      background: var(--ds-surface);
+      border-radius: var(--ds-radius-lg);
+      overflow: hidden;
+      box-shadow: var(--ds-shadow-md);
+    }
+
+    .fresh-table th {
+      background: var(--ds-gradient-cyber);
+      color: white;
+      font-weight: var(--ds-font-weight-bold);
+      text-align: left;
+      padding: var(--ds-space-4);
+      text-transform: uppercase;
+      font-size: var(--ds-font-size-sm);
+      letter-spacing: 0.05em;
+    }
+
+    .fresh-table td {
+      padding: var(--ds-space-4);
+      border-bottom: 1px solid var(--ds-border);
+    }
+
+    .fresh-table tbody tr {
+      transition: all var(--ds-duration-fast) var(--ds-ease-smooth);
+    }
+
+    .fresh-table tbody tr:hover {
+      background: var(--ds-bg-elevated);
+      transform: scale(1.01);
+    }
+
+    .fresh-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* ============================================
+       NAVIGATION - SLEEK
+       ============================================ */
+
+    .fresh-nav {
+      list-style: none;
+    }
+
+    .fresh-nav-section {
+      margin-bottom: var(--ds-space-6);
+    }
+
+    .fresh-nav-title {
+      font-size: var(--ds-font-size-xs);
+      font-weight: var(--ds-font-weight-bold);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--ds-text-dim);
+      margin-bottom: var(--ds-space-3);
+      padding-left: var(--ds-space-3);
+    }
+
+    .fresh-nav-link {
+      display: block;
+      padding: var(--ds-space-3);
+      color: var(--ds-text-muted);
+      text-decoration: none;
+      border-radius: var(--ds-radius-md);
+      transition: all var(--ds-duration-fast) var(--ds-ease-smooth);
+      font-weight: var(--ds-font-weight-medium);
+      position: relative;
+    }
+
+    .fresh-nav-link::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 0;
+      height: 60%;
+      background: var(--ds-gradient-cyber);
+      border-radius: 0 var(--ds-radius-sm) var(--ds-radius-sm) 0;
+      transition: width var(--ds-duration-fast) var(--ds-ease-smooth);
+    }
+
+    .fresh-nav-link:hover {
+      color: var(--ds-text);
+      background: var(--ds-bg-elevated);
+      padding-left: var(--ds-space-4);
+    }
+
+    .fresh-nav-link:hover::before {
+      width: 4px;
+    }
+
+    .fresh-nav-link.active {
+      color: var(--ds-primary);
+      background: var(--ds-bg-elevated);
+      font-weight: var(--ds-font-weight-bold);
+      padding-left: var(--ds-space-4);
+    }
+
+    .fresh-nav-link.active::before {
+      width: 4px;
+    }
+
+    /* ============================================
+       MODAL - DRAMATIC ENTRANCE
+       ============================================ */
+
+    .fresh-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(8px);
+      z-index: var(--ds-z-modal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--ds-space-4);
+      opacity: 0;
+      visibility: hidden;
+      transition: all var(--ds-duration-normal) var(--ds-ease-smooth);
+    }
+
+    .fresh-modal-overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .fresh-modal {
+      background: var(--ds-surface);
+      border-radius: var(--ds-radius-xl);
+      box-shadow: var(--ds-shadow-xl), 0 0 60px rgba(0, 245, 255, 0.3);
+      max-width: 600px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      border: 1px solid var(--ds-border-neon);
+      transform: scale(0.8) translateY(40px);
+      transition: transform var(--ds-duration-normal) var(--ds-ease-bounce);
+    }
+
+    .fresh-modal-overlay.open .fresh-modal {
+      transform: scale(1) translateY(0);
+    }
+
+    .fresh-modal-header {
+      padding: var(--ds-space-6);
+      border-bottom: 1px solid var(--ds-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--ds-gradient-cyber);
+    }
+
+    .fresh-modal-title {
+      font-size: var(--ds-font-size-2xl);
+      font-weight: var(--ds-font-weight-black);
+      margin: 0;
+      color: white;
+    }
+
+    .fresh-modal-body {
+      padding: var(--ds-space-6);
+    }
+
+    .fresh-modal-footer {
+      padding: var(--ds-space-6);
+      border-top: 1px solid var(--ds-border);
+      display: flex;
+      gap: var(--ds-space-3);
+      justify-content: flex-end;
+    }
+
+    /* ============================================
+       TABS - MODERN STYLE
+       ============================================ */
+
+    .fresh-tabs {
+      display: flex;
+      gap: var(--ds-space-2);
+      border-bottom: 2px solid var(--ds-border);
+      margin-bottom: var(--ds-space-6);
+    }
+
+    .fresh-tab {
+      padding: var(--ds-space-3) var(--ds-space-5);
+      background: transparent;
+      border: none;
+      color: var(--ds-text-muted);
+      font-weight: var(--ds-font-weight-semibold);
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -2px;
+      transition: all var(--ds-duration-fast) var(--ds-ease-smooth);
+      position: relative;
+    }
+
+    .fresh-tab:hover {
+      color: var(--ds-text);
+      background: var(--ds-bg-elevated);
+    }
+
+    .fresh-tab.active {
+      color: var(--ds-primary);
+      border-bottom-color: var(--ds-primary);
+      background: var(--ds-bg-elevated);
+    }
+
+    .fresh-tab.active::before {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 6px;
+      height: 6px;
+      background: var(--ds-primary);
+      border-radius: 50%;
+      box-shadow: var(--ds-shadow-glow-primary);
+    }
+
+    /* ============================================
+       ACCORDION - SMOOTH ANIMATION
+       ============================================ */
+
+    .fresh-accordion {
+      border-radius: var(--ds-radius-lg);
+      overflow: hidden;
+      background: var(--ds-surface);
+    }
+
+    .fresh-accordion-item {
+      border-bottom: 1px solid var(--ds-border);
+    }
+
+    .fresh-accordion-item:last-child {
+      border-bottom: none;
+    }
+
+    .fresh-accordion-header {
+      width: 100%;
+      padding: var(--ds-space-5);
+      background: transparent;
+      border: none;
+      text-align: left;
+      font-size: var(--ds-font-size-lg);
+      font-weight: var(--ds-font-weight-bold);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all var(--ds-duration-fast) var(--ds-ease-smooth);
+      color: var(--ds-text);
+    }
+
+    .fresh-accordion-header:hover {
+      background: var(--ds-bg-elevated);
+      color: var(--ds-primary);
+    }
+
+    .fresh-accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height var(--ds-duration-normal) var(--ds-ease-smooth);
+    }
+
+    .fresh-accordion-content.open {
+      max-height: 500px;
+    }
+
+    .fresh-accordion-body {
+      padding: var(--ds-space-5);
+      background: var(--ds-bg-muted);
+      color: var(--ds-text-muted);
+    }
+
+    /* ============================================
+       UTILITIES
+       ============================================ */
+
+    .text-gradient {
+      background: var(--ds-gradient-neon);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .glow-text {
+      text-shadow: 0 0 20px var(--ds-primary-glow);
+    }
+
+    .flex { display: flex; }
+    .flex-col { flex-direction: column; }
+    .items-center { align-items: center; }
+    .justify-between { justify-content: space-between; }
+    .gap-2 { gap: var(--ds-space-2); }
+    .gap-4 { gap: var(--ds-space-4); }
+    .gap-6 { gap: var(--ds-space-6); }
+
+    /* Grid System */
+    .fresh-grid {
+      display: grid;
+      gap: var(--ds-space-6);
+    }
+
+    .fresh-grid-2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+    .fresh-grid-3 { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+
+    /* Example Wrapper */
+    .fresh-example {
+      padding: var(--ds-space-8);
+      background: var(--ds-bg-elevated);
+      border: 1px solid var(--ds-border);
+      border-radius: var(--ds-radius-xl);
+      margin: var(--ds-space-6) 0;
+      box-shadow: var(--ds-shadow-lg);
+    }
+
+    /* Code Block */
+    .fresh-code-block {
+      position: relative;
+      margin: var(--ds-space-5) 0;
+    }
+
+    .fresh-code-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--ds-space-3) var(--ds-space-4);
+      background: var(--ds-bg-elevated);
+      border: 1px solid var(--ds-border);
+      border-bottom: none;
+      border-radius: var(--ds-radius-lg) var(--ds-radius-lg) 0 0;
+      font-size: var(--ds-font-size-sm);
+      color: var(--ds-text-muted);
+    }
+
+    /* Skeleton Loader */
+    .fresh-skeleton {
+      background: linear-gradient(90deg, var(--ds-bg-elevated) 25%, var(--ds-surface) 50%, var(--ds-bg-elevated) 75%);
+      background-size: 200% 100%;
+      animation: shimmer 2s infinite;
+      border-radius: var(--ds-radius-md);
+    }
+
+    @keyframes shimmer {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    /* Progress Bar - Glowing */
+    .fresh-progress {
+      width: 100%;
+      height: 8px;
+      background: var(--ds-bg-elevated);
+      border-radius: var(--ds-radius-full);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .fresh-progress-bar {
+      height: 100%;
+      background: var(--ds-gradient-cyber);
+      border-radius: var(--ds-radius-full);
+      transition: width var(--ds-duration-normal) var(--ds-ease-smooth);
+      box-shadow: var(--ds-shadow-glow-primary);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .fresh-progress-bar::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      animation: progress-shine 2s infinite;
+    }
+
+    @keyframes progress-shine {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- SVG Icons -->
+  <svg style="display: none;" aria-hidden="true">
+    <symbol id="icon-bolt" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z"/>
+    </symbol>
+    <symbol id="icon-sparkles" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M12 3l1.5 4.5L18 9l-4.5 1.5L12 15l-1.5-4.5L6 9l4.5-1.5L12 3z"/>
+      <path d="M19 12l.8 2.4 2.4.8-2.4.8L19 18.8l-.8-2.4-2.4-.8 2.4-.8L19 12z"/>
+    </symbol>
+    <symbol id="icon-fire" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 2c1.5 3.5 3 5 5 7 2 2 2 5 0 7-2 2-5 2-7 0s-2-5 0-7c2-2 3.5-3.5 5-7z"/>
+      <path opacity="0.5" d="M12 7c.5 2 1.5 3 3 4 1 1 1 2.5 0 3.5s-2.5 1-3.5 0-1-2.5 0-3.5c1-1 2-2 3-4z"/>
+    </symbol>
+    <symbol id="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+      <polyline points="20 6 9 17 4 12"></polyline>
+    </symbol>
+    <symbol id="icon-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+    </symbol>
+    <symbol id="icon-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <line x1="18" y1="6" x2="6" y2="18"></line>
+      <line x1="6" y1="6" x2="18" y2="18"></line>
+    </symbol>
+    <symbol id="icon-chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <polyline points="6 9 12 15 18 9"></polyline>
+    </symbol>
+    <symbol id="icon-zap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+    </symbol>
+  </svg>
+
+  <div class="fresh-layout">
+    <!-- Header -->
+    <header class="fresh-header">
+      <a href="#" class="fresh-brand">FRESH</a>
+
+      <div class="flex items-center gap-4">
+        <label class="fresh-toggle">
+          <input type="checkbox" id="theme-toggle">
+          <span class="fresh-toggle-track">
+            <span class="fresh-toggle-thumb"></span>
+          </span>
+          <span>Dark</span>
+        </label>
+
+        <label class="fresh-toggle">
+          <input type="checkbox" id="density-toggle">
+          <span class="fresh-toggle-track">
+            <span class="fresh-toggle-thumb"></span>
+          </span>
+          <span>Compact</span>
+        </label>
+      </div>
+    </header>
+
+    <!-- Sidebar -->
+    <nav class="fresh-sidebar">
+      <div class="fresh-nav-section">
+        <div class="fresh-nav-title">Foundations</div>
+        <ul class="fresh-nav">
+          <li><a href="#intro" class="fresh-nav-link">Introduction</a></li>
+          <li><a href="#colors" class="fresh-nav-link">Colors</a></li>
+          <li><a href="#typography" class="fresh-nav-link">Typography</a></li>
+          <li><a href="#effects" class="fresh-nav-link">Effects</a></li>
+        </ul>
+      </div>
+
+      <div class="fresh-nav-section">
+        <div class="fresh-nav-title">Components</div>
+        <ul class="fresh-nav">
+          <li><a href="#buttons" class="fresh-nav-link">Buttons</a></li>
+          <li><a href="#inputs" class="fresh-nav-link">Inputs</a></li>
+          <li><a href="#cards" class="fresh-nav-link">Cards</a></li>
+          <li><a href="#alerts" class="fresh-nav-link">Alerts</a></li>
+          <li><a href="#badges" class="fresh-nav-link">Badges</a></li>
+          <li><a href="#tables" class="fresh-nav-link">Tables</a></li>
+          <li><a href="#modals" class="fresh-nav-link">Modals</a></li>
+          <li><a href="#tabs" class="fresh-nav-link">Tabs</a></li>
+        </ul>
+      </div>
+
+      <div class="fresh-nav-section">
+        <div class="fresh-nav-title">Patterns</div>
+        <ul class="fresh-nav">
+          <li><a href="#forms" class="fresh-nav-link">Forms</a></li>
+          <li><a href="#dashboard" class="fresh-nav-link">Dashboard</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="fresh-main">
+      <!-- Introduction -->
+      <section id="intro" data-ds-docs-section="intro">
+        <h1>FRESH Design System</h1>
+        <p style="font-size: var(--ds-font-size-xl); font-weight: var(--ds-font-weight-medium);">
+          Bold. Modern. Unapologetically Vibrant.
+        </p>
+
+        <div class="fresh-alert fresh-alert--info">
+          <svg width="24" height="24"><use href="#icon-sparkles"></use></svg>
+          <div>
+            <strong>Welcome!</strong> This design system breaks free from generic templates with bold gradients, glowing effects, and modern aesthetics that demand attention.
+          </div>
+        </div>
+
+        <div class="fresh-grid-2" style="margin-top: var(--ds-space-8);">
+          <div class="fresh-card">
+            <svg width="32" height="32" style="color: var(--ds-primary); margin-bottom: var(--ds-space-3);"><use href="#icon-bolt"></use></svg>
+            <h3>Blazing Fast</h3>
+            <p>Optimized animations and transitions that feel snappy and responsive.</p>
+          </div>
+
+          <div class="fresh-card">
+            <svg width="32" height="32" style="color: var(--ds-success); margin-bottom: var(--ds-space-3);"><use href="#icon-sparkles"></use></svg>
+            <h3>Eye-Catching</h3>
+            <p>Gradients, glows, and glassmorphism create a modern, premium feel.</p>
+          </div>
+
+          <div class="fresh-card">
+            <svg width="32" height="32" style="color: var(--ds-warning); margin-bottom: var(--ds-space-3);"><use href="#icon-check"></use></svg>
+            <h3>Accessible</h3>
+            <p>WCAG 2.2 AA compliant with full keyboard support and ARIA.</p>
+          </div>
+
+          <div class="fresh-card">
+            <svg width="32" height="32" style="color: var(--ds-danger); margin-bottom: var(--ds-space-3);"><use href="#icon-fire"></use></svg>
+            <h3>Themeable</h3>
+            <p>Switch between themes instantly with CSS custom properties.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Colors -->
+      <section id="colors" data-ds-docs-section="foundations/colors">
+        <h2>Colors</h2>
+        <p>Bold, vibrant colors with neon accents and dramatic gradients.</p>
+
+        <h3>Gradient Collection</h3>
+        <div class="fresh-grid-3">
+          <div style="height: 120px; background: var(--ds-gradient-neon); border-radius: var(--ds-radius-lg); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; box-shadow: var(--ds-shadow-lg);">
+            Neon
+          </div>
+          <div style="height: 120px; background: var(--ds-gradient-cyber); border-radius: var(--ds-radius-lg); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; box-shadow: var(--ds-shadow-lg);">
+            Cyber
+          </div>
+          <div style="height: 120px; background: var(--ds-gradient-fire); border-radius: var(--ds-radius-lg); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; box-shadow: var(--ds-shadow-lg);">
+            Fire
+          </div>
+          <div style="height: 120px; background: var(--ds-gradient-ocean); border-radius: var(--ds-radius-lg); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; box-shadow: var(--ds-shadow-lg);">
+            Ocean
+          </div>
+          <div style="height: 120px; background: var(--ds-gradient-sunset); border-radius: var(--ds-radius-lg); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; box-shadow: var(--ds-shadow-lg);">
+            Sunset
+          </div>
+          <div style="height: 120px; background: var(--ds-gradient-primary); border-radius: var(--ds-radius-lg); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; box-shadow: var(--ds-shadow-lg);">
+            Primary
+          </div>
+        </div>
+
+        <h3 style="margin-top: var(--ds-space-8);">Status Colors with Glow</h3>
+        <div class="fresh-example">
+          <div class="flex gap-4" style="flex-wrap: wrap;">
+            <div style="width: 80px; height: 80px; background: var(--ds-primary); border-radius: var(--ds-radius-lg); box-shadow: var(--ds-shadow-glow-primary);"></div>
+            <div style="width: 80px; height: 80px; background: var(--ds-success); border-radius: var(--ds-radius-lg); box-shadow: var(--ds-shadow-glow-success);"></div>
+            <div style="width: 80px; height: 80px; background: var(--ds-warning); border-radius: var(--ds-radius-lg); box-shadow: 0 0 20px var(--ds-warning-glow);"></div>
+            <div style="width: 80px; height: 80px; background: var(--ds-danger); border-radius: var(--ds-radius-lg); box-shadow: var(--ds-shadow-glow-danger);"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Typography -->
+      <section id="typography" data-ds-docs-section="foundations/typography">
+        <h2>Typography</h2>
+        <p>Bold, modern type hierarchy with gradient text effects.</p>
+
+        <div class="fresh-example">
+          <h1 style="font-size: var(--ds-font-size-5xl);">Display Heading</h1>
+          <h2 style="font-size: var(--ds-font-size-3xl); background: none; -webkit-text-fill-color: unset;">Main Heading</h2>
+          <h3 style="font-size: var(--ds-font-size-2xl);">Section Heading</h3>
+          <p style="font-size: var(--ds-font-size-lg);">Large body text for emphasis and important content that needs to stand out.</p>
+          <p>Regular body text with excellent readability and comfortable line height for long-form content.</p>
+          <p style="font-size: var(--ds-font-size-sm); color: var(--ds-text-dim);">Small text for captions and secondary information.</p>
+        </div>
+
+        <div class="fresh-alert fresh-alert--success">
+          <svg width="20" height="20"><use href="#icon-check"></use></svg>
+          <div>All text maintains WCAG AA contrast ratios in both light and dark themes.</div>
+        </div>
+      </section>
+
+      <!-- Effects -->
+      <section id="effects" data-ds-docs-section="foundations/effects">
+        <h2>Effects</h2>
+        <p>Glassmorphism, glows, and modern visual effects.</p>
+
+        <h3>Glassmorphism</h3>
+        <div class="fresh-example" style="background: var(--ds-gradient-primary); padding: var(--ds-space-10);">
+          <div style="background: var(--ds-glass-bg); backdrop-filter: var(--ds-glass-blur); -webkit-backdrop-filter: var(--ds-glass-blur); border: 1px solid var(--ds-glass-border); border-radius: var(--ds-radius-xl); padding: var(--ds-space-6); color: white;">
+            <h4 style="color: white; margin-bottom: var(--ds-space-3);">Glass Card</h4>
+            <p style="color: rgba(255, 255, 255, 0.8);">Frosted glass effect with backdrop blur creates depth and modern aesthetics.</p>
+          </div>
+        </div>
+
+        <h3>Glow Effects</h3>
+        <div class="fresh-example" style="display: flex; gap: var(--ds-space-6); justify-content: center; flex-wrap: wrap;">
+          <div style="width: 100px; height: 100px; background: var(--ds-primary); border-radius: var(--ds-radius-full); box-shadow: var(--ds-shadow-glow-primary), var(--ds-shadow-lg);"></div>
+          <div style="width: 100px; height: 100px; background: var(--ds-success); border-radius: var(--ds-radius-full); box-shadow: var(--ds-shadow-glow-success), var(--ds-shadow-lg);"></div>
+          <div style="width: 100px; height: 100px; background: var(--ds-danger); border-radius: var(--ds-radius-full); box-shadow: var(--ds-shadow-glow-danger), var(--ds-shadow-lg);"></div>
+        </div>
+      </section>
+
+      <!-- Buttons -->
+      <section id="buttons" data-ds-docs-section="components/button">
+        <h2>Buttons</h2>
+        <p>Bold, glowing buttons with smooth animations and gradient backgrounds.</p>
+
+        <h3>Variants</h3>
+        <div class="fresh-example" data-ds-component="button">
+          <div class="flex gap-4" style="flex-wrap: wrap;">
+            <button class="fresh-btn fresh-btn--primary">
+              <svg width="20" height="20"><use href="#icon-zap"></use></svg>
+              Primary
+            </button>
+            <button class="fresh-btn fresh-btn--fire">
+              <svg width="20" height="20"><use href="#icon-fire"></use></svg>
+              Fire
+            </button>
+            <button class="fresh-btn fresh-btn--outline">Outline</button>
+            <button class="fresh-btn fresh-btn--ghost">Ghost</button>
+            <button class="fresh-btn fresh-btn--danger">Danger</button>
+          </div>
+        </div>
+
+        <div class="fresh-code-block">
+          <div class="fresh-code-header">
+            <span>HTML</span>
+            <button class="fresh-btn fresh-btn--ghost fresh-btn--sm" onclick="FRESH.copyCode('btn-code')">
+              <svg width="16" height="16"><use href="#icon-copy"></use></svg>
+              Copy
+            </button>
+          </div>
+          <pre id="btn-code"><code>&lt;button class="fresh-btn fresh-btn--primary"&gt;Primary&lt;/button&gt;
+&lt;button class="fresh-btn fresh-btn--fire"&gt;Fire&lt;/button&gt;
+&lt;button class="fresh-btn fresh-btn--outline"&gt;Outline&lt;/button&gt;</code></pre>
+        </div>
+
+        <h3>Sizes</h3>
+        <div class="fresh-example">
+          <div class="flex gap-4 items-center" style="flex-wrap: wrap;">
+            <button class="fresh-btn fresh-btn--primary fresh-btn--sm">Small</button>
+            <button class="fresh-btn fresh-btn--primary">Medium</button>
+            <button class="fresh-btn fresh-btn--primary fresh-btn--lg">Large</button>
+          </div>
+        </div>
+
+        <div class="fresh-alert fresh-alert--info">
+          <svg width="20" height="20"><use href="#icon-sparkles"></use></svg>
+          <div>Buttons feature ripple effects, glow on hover, and smooth scale animations.</div>
+        </div>
+      </section>
+
+      <!-- Inputs -->
+      <section id="inputs" data-ds-docs-section="components/input">
+        <h2>Inputs & Forms</h2>
+        <p>Modern form controls with glowing focus states.</p>
+
+        <div class="fresh-example">
+          <div style="max-width: 500px;">
+            <div style="margin-bottom: var(--ds-space-5);">
+              <label style="display: block; font-weight: var(--ds-font-weight-semibold); margin-bottom: var(--ds-space-2);">Email</label>
+              <input type="email" class="fresh-input" placeholder="you@example.com">
+            </div>
+
+            <div style="margin-bottom: var(--ds-space-5);">
+              <label style="display: block; font-weight: var(--ds-font-weight-semibold); margin-bottom: var(--ds-space-2);">Message</label>
+              <textarea class="fresh-textarea" placeholder="Tell us what you think..."></textarea>
+            </div>
+
+            <div style="margin-bottom: var(--ds-space-5);">
+              <label style="display: block; font-weight: var(--ds-font-weight-semibold); margin-bottom: var(--ds-space-2);">Country</label>
+              <select class="fresh-select">
+                <option>United States</option>
+                <option>Canada</option>
+                <option>United Kingdom</option>
+              </select>
+            </div>
+
+            <label class="fresh-checkbox">
+              <input type="checkbox" checked>
+              <span class="fresh-checkbox-box"></span>
+              <span>I agree to the terms</span>
+            </label>
+          </div>
+        </div>
+
+        <h3>Toggle Switch</h3>
+        <div class="fresh-example">
+          <div class="flex flex-col gap-4">
+            <label class="fresh-toggle">
+              <input type="checkbox" checked>
+              <span class="fresh-toggle-track">
+                <span class="fresh-toggle-thumb"></span>
+              </span>
+              <span>Enable notifications</span>
+            </label>
+
+            <label class="fresh-toggle">
+              <input type="checkbox">
+              <span class="fresh-toggle-track">
+                <span class="fresh-toggle-thumb"></span>
+              </span>
+              <span>Auto-save</span>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- Cards -->
+      <section id="cards" data-ds-docs-section="components/card">
+        <h2>Cards</h2>
+        <p>Glass-effect cards with hover animations and gradient accents.</p>
+
+        <div class="fresh-grid-2">
+          <div class="fresh-card">
+            <div class="flex items-center gap-3" style="margin-bottom: var(--ds-space-4);">
+              <svg width="32" height="32" style="color: var(--ds-primary);"><use href="#icon-bolt"></use></svg>
+              <h3 style="margin: 0;">Lightning Fast</h3>
+            </div>
+            <p>Optimized performance with smooth 60fps animations and transitions.</p>
+            <button class="fresh-btn fresh-btn--primary fresh-btn--sm" style="margin-top: var(--ds-space-4);">Learn More</button>
+          </div>
+
+          <div class="fresh-card fresh-card-glow">
+            <span class="fresh-badge fresh-badge--primary" style="margin-bottom: var(--ds-space-3);">Premium</span>
+            <h3>Gradient Glow</h3>
+            <p>Hover over this card to see the neon glow effect in action.</p>
+            <div style="margin-top: var(--ds-space-4);">
+              <div class="fresh-progress">
+                <div class="fresh-progress-bar" style="width: 75%;"></div>
+              </div>
+              <p style="font-size: var(--ds-font-size-sm); margin-top: var(--ds-space-2); margin-bottom: 0;">75% Complete</p>
+            </div>
+          </div>
+
+          <div class="fresh-card">
+            <h3>Modern Design</h3>
+            <p>Glassmorphism, bold colors, and contemporary aesthetics that stand out.</p>
+            <div class="flex gap-2" style="margin-top: var(--ds-space-4);">
+              <span class="fresh-badge fresh-badge--success">Active</span>
+              <span class="fresh-badge fresh-badge--primary">Featured</span>
+            </div>
+          </div>
+
+          <div class="fresh-card">
+            <h3>Fully Accessible</h3>
+            <p>WCAG 2.2 AA compliant with keyboard navigation and screen reader support.</p>
+            <ul style="margin-top: var(--ds-space-3); padding-left: var(--ds-space-5); color: var(--ds-text-muted);">
+              <li>Semantic HTML</li>
+              <li>ARIA labels</li>
+              <li>Keyboard support</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Alerts -->
+      <section id="alerts" data-ds-docs-section="components/alert">
+        <h2>Alerts</h2>
+        <p>Bold notification messages with glowing borders.</p>
+
+        <div class="fresh-example" data-ds-component="alert">
+          <div class="fresh-alert fresh-alert--info">
+            <svg width="24" height="24"><use href="#icon-sparkles"></use></svg>
+            <div>
+              <strong>Info:</strong> System updated successfully with new features.
+            </div>
+          </div>
+
+          <div class="fresh-alert fresh-alert--success">
+            <svg width="24" height="24"><use href="#icon-check"></use></svg>
+            <div>
+              <strong>Success:</strong> Your profile has been saved!
+            </div>
+          </div>
+
+          <div class="fresh-alert fresh-alert--warning">
+            <svg width="24" height="24"><use href="#icon-bolt"></use></svg>
+            <div>
+              <strong>Warning:</strong> You're approaching your storage limit.
+            </div>
+          </div>
+
+          <div class="fresh-alert fresh-alert--danger">
+            <svg width="24" height="24"><use href="#icon-x"></use></svg>
+            <div>
+              <strong>Error:</strong> Failed to connect to the server.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Badges -->
+      <section id="badges" data-ds-docs-section="components/badge">
+        <h2>Badges</h2>
+        <p>Glowing status indicators and labels.</p>
+
+        <div class="fresh-example">
+          <div class="flex gap-3" style="flex-wrap: wrap; align-items: center;">
+            <span class="fresh-badge fresh-badge--primary">New</span>
+            <span class="fresh-badge fresh-badge--success">Active</span>
+            <span class="fresh-badge fresh-badge--warning">Pending</span>
+            <span class="fresh-badge fresh-badge--danger">Urgent</span>
+          </div>
+
+          <div style="margin-top: var(--ds-space-6);">
+            <button class="fresh-btn fresh-btn--primary">
+              Inbox
+              <span class="fresh-badge fresh-badge--danger">12</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tables -->
+      <section id="tables" data-ds-docs-section="components/table">
+        <h2>Tables</h2>
+        <p>Modern data tables with gradient headers and hover effects.</p>
+
+        <div class="fresh-example">
+          <table class="fresh-table">
+            <thead>
+              <tr>
+                <th>User</th>
+                <th>Email</th>
+                <th>Status</th>
+                <th>Role</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="font-weight: var(--ds-font-weight-semibold);">Alex Chen</td>
+                <td>alex@example.com</td>
+                <td><span class="fresh-badge fresh-badge--success">Active</span></td>
+                <td>Admin</td>
+              </tr>
+              <tr>
+                <td style="font-weight: var(--ds-font-weight-semibold);">Jordan Smith</td>
+                <td>jordan@example.com</td>
+                <td><span class="fresh-badge fresh-badge--success">Active</span></td>
+                <td>Developer</td>
+              </tr>
+              <tr>
+                <td style="font-weight: var(--ds-font-weight-semibold);">Sam Taylor</td>
+                <td>sam@example.com</td>
+                <td><span class="fresh-badge fresh-badge--warning">Pending</span></td>
+                <td>Designer</td>
+              </tr>
+              <tr>
+                <td style="font-weight: var(--ds-font-weight-semibold);">Casey Morgan</td>
+                <td>casey@example.com</td>
+                <td><span class="fresh-badge fresh-badge--success">Active</span></td>
+                <td>Manager</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Modals -->
+      <section id="modals" data-ds-docs-section="components/modal">
+        <h2>Modals</h2>
+        <p>Dramatic modal dialogs with neon borders and smooth animations.</p>
+
+        <div class="fresh-example">
+          <button class="fresh-btn fresh-btn--primary" onclick="FRESH.openModal('demo-modal')">
+            Open Modal
+          </button>
+        </div>
+      </section>
+
+      <!-- Tabs -->
+      <section id="tabs" data-ds-docs-section="components/tabs">
+        <h2>Tabs</h2>
+        <p>Modern tab navigation with glowing active indicators.</p>
+
+        <div class="fresh-example">
+          <div class="fresh-tabs">
+            <button class="fresh-tab active" onclick="FRESH.switchTab(0)">Overview</button>
+            <button class="fresh-tab" onclick="FRESH.switchTab(1)">Features</button>
+            <button class="fresh-tab" onclick="FRESH.switchTab(2)">Settings</button>
+          </div>
+
+          <div id="tab-panels">
+            <div class="tab-panel active">
+              <h4>Overview</h4>
+              <p>This design system features bold gradients, glowing effects, and modern aesthetics that break away from generic templates.</p>
+            </div>
+            <div class="tab-panel" style="display: none;">
+              <h4>Features</h4>
+              <p>Glassmorphism, neon glows, smooth animations, and fully accessible components.</p>
+            </div>
+            <div class="tab-panel" style="display: none;">
+              <h4>Settings</h4>
+              <p>Customize themes, density, and preferences to match your brand.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Forms Pattern -->
+      <section id="forms" data-ds-docs-section="patterns/forms">
+        <h2>Form Patterns</h2>
+        <p>Complete form examples with validation and modern styling.</p>
+
+        <div class="fresh-card" style="max-width: 600px;">
+          <h3 style="margin-bottom: var(--ds-space-6);">Contact Form</h3>
+          <form>
+            <div style="margin-bottom: var(--ds-space-5);">
+              <label style="display: block; font-weight: var(--ds-font-weight-semibold); margin-bottom: var(--ds-space-2);">Full Name</label>
+              <input type="text" class="fresh-input" placeholder="John Doe" required>
+            </div>
+
+            <div style="margin-bottom: var(--ds-space-5);">
+              <label style="display: block; font-weight: var(--ds-font-weight-semibold); margin-bottom: var(--ds-space-2);">Email</label>
+              <input type="email" class="fresh-input" placeholder="john@example.com" required>
+            </div>
+
+            <div style="margin-bottom: var(--ds-space-5);">
+              <label style="display: block; font-weight: var(--ds-font-weight-semibold); margin-bottom: var(--ds-space-2);">Subject</label>
+              <select class="fresh-select" required>
+                <option>General Inquiry</option>
+                <option>Technical Support</option>
+                <option>Partnership</option>
+                <option>Feedback</option>
+              </select>
+            </div>
+
+            <div style="margin-bottom: var(--ds-space-5);">
+              <label style="display: block; font-weight: var(--ds-font-weight-semibold); margin-bottom: var(--ds-space-2);">Message</label>
+              <textarea class="fresh-textarea" placeholder="Your message..." required></textarea>
+            </div>
+
+            <label class="fresh-checkbox" style="margin-bottom: var(--ds-space-6);">
+              <input type="checkbox" required>
+              <span class="fresh-checkbox-box"></span>
+              <span>I agree to the terms and conditions</span>
+            </label>
+
+            <div class="flex gap-3">
+              <button type="submit" class="fresh-btn fresh-btn--primary">
+                <svg width="20" height="20"><use href="#icon-check"></use></svg>
+                Submit
+              </button>
+              <button type="reset" class="fresh-btn fresh-btn--ghost">Reset</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- Dashboard Pattern -->
+      <section id="dashboard" data-ds-docs-section="patterns/dashboard">
+        <h2>Dashboard Pattern</h2>
+        <p>Modern dashboard layout with stats cards and data visualization.</p>
+
+        <div class="fresh-grid-3" style="margin-bottom: var(--ds-space-6);">
+          <div class="fresh-card">
+            <div style="color: var(--ds-text-dim); font-size: var(--ds-font-size-sm); margin-bottom: var(--ds-space-2);">TOTAL USERS</div>
+            <div style="font-size: var(--ds-font-size-4xl); font-weight: var(--ds-font-weight-black); margin-bottom: var(--ds-space-3);" class="text-gradient">24.5K</div>
+            <span class="fresh-badge fresh-badge--success">+12.5%</span>
+          </div>
+
+          <div class="fresh-card">
+            <div style="color: var(--ds-text-dim); font-size: var(--ds-font-size-sm); margin-bottom: var(--ds-space-2);">REVENUE</div>
+            <div style="font-size: var(--ds-font-size-4xl); font-weight: var(--ds-font-weight-black); margin-bottom: var(--ds-space-3);" class="text-gradient">$89.2K</div>
+            <span class="fresh-badge fresh-badge--success">+23.1%</span>
+          </div>
+
+          <div class="fresh-card">
+            <div style="color: var(--ds-text-dim); font-size: var(--ds-font-size-sm); margin-bottom: var(--ds-space-2);">PROJECTS</div>
+            <div style="font-size: var(--ds-font-size-4xl); font-weight: var(--ds-font-weight-black); margin-bottom: var(--ds-space-3);" class="text-gradient">142</div>
+            <span class="fresh-badge fresh-badge--primary">Active</span>
+          </div>
+        </div>
+
+        <div class="fresh-card">
+          <h3 style="margin-bottom: var(--ds-space-5);">Recent Activity</h3>
+          <table class="fresh-table">
+            <thead>
+              <tr>
+                <th>Project</th>
+                <th>Status</th>
+                <th>Progress</th>
+                <th>Team</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="font-weight: var(--ds-font-weight-bold);">Website Redesign</td>
+                <td><span class="fresh-badge fresh-badge--success">On Track</span></td>
+                <td>
+                  <div class="fresh-progress">
+                    <div class="fresh-progress-bar" style="width: 85%;"></div>
+                  </div>
+                </td>
+                <td>Design Team</td>
+              </tr>
+              <tr>
+                <td style="font-weight: var(--ds-font-weight-bold);">Mobile App</td>
+                <td><span class="fresh-badge fresh-badge--warning">In Review</span></td>
+                <td>
+                  <div class="fresh-progress">
+                    <div class="fresh-progress-bar" style="width: 60%;"></div>
+                  </div>
+                </td>
+                <td>Dev Team</td>
+              </tr>
+              <tr>
+                <td style="font-weight: var(--ds-font-weight-bold);">Marketing Campaign</td>
+                <td><span class="fresh-badge fresh-badge--success">Complete</span></td>
+                <td>
+                  <div class="fresh-progress">
+                    <div class="fresh-progress-bar" style="width: 100%;"></div>
+                  </div>
+                </td>
+                <td>Marketing</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="fresh-footer">
+      <h3 class="text-gradient" style="font-size: var(--ds-font-size-2xl); margin-bottom: var(--ds-space-4);">FRESH Design System</h3>
+      <p style="color: var(--ds-text-muted); margin-bottom: var(--ds-space-2);">v1.0.0 | Generated 2025-11-11</p>
+      <p style="color: var(--ds-text-dim);">Bold, Modern, Unapologetically Fresh</p>
+      <div class="flex gap-3 justify-center" style="margin-top: var(--ds-space-5);">
+        <span class="fresh-badge fresh-badge--primary">MIT License</span>
+        <span class="fresh-badge fresh-badge--success">WCAG 2.2 AA</span>
+        <span class="fresh-badge fresh-badge--primary">LLM-Ready</span>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Modal -->
+  <div class="fresh-modal-overlay" id="demo-modal">
+    <div class="fresh-modal">
+      <div class="fresh-modal-header">
+        <h2 class="fresh-modal-title">Awesome Modal</h2>
+        <button class="fresh-btn fresh-btn--ghost fresh-btn--sm" onclick="FRESH.closeModal('demo-modal')" style="color: white;">
+          <svg width="20" height="20"><use href="#icon-x"></use></svg>
+        </button>
+      </div>
+      <div class="fresh-modal-body">
+        <p>This modal features a dramatic entrance animation with neon border and backdrop blur effect.</p>
+        <p>Press Escape or click outside to close.</p>
+
+        <div class="fresh-alert fresh-alert--info" style="margin-top: var(--ds-space-5);">
+          <svg width="20" height="20"><use href="#icon-sparkles"></use></svg>
+          <div>This is an example alert inside a modal!</div>
+        </div>
+      </div>
+      <div class="fresh-modal-footer">
+        <button class="fresh-btn fresh-btn--ghost" onclick="FRESH.closeModal('demo-modal')">Cancel</button>
+        <button class="fresh-btn fresh-btn--primary" onclick="FRESH.closeModal('demo-modal')">
+          Confirm
+          <svg width="20" height="20"><use href="#icon-check"></use></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    window.FRESH = (function() {
+      'use strict';
+
+      // Initialize
+      function init() {
+        setupTheme();
+        setupDensity();
+        setupNav();
+        setupModals();
+      }
+
+      // Theme Management
+      function setupTheme() {
+        const toggle = document.getElementById('theme-toggle');
+        const saved = localStorage.getItem('fresh-theme') || 'neon';
+
+        document.documentElement.setAttribute('data-theme', saved);
+        if (toggle) {
+          toggle.checked = saved === 'light';
+          toggle.addEventListener('change', (e) => {
+            const theme = e.target.checked ? 'light' : 'neon';
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('fresh-theme', theme);
+          });
+        }
+      }
+
+      // Density Management
+      function setupDensity() {
+        const toggle = document.getElementById('density-toggle');
+        const saved = localStorage.getItem('fresh-density') || 'comfortable';
+
+        document.documentElement.setAttribute('data-density', saved);
+        if (toggle) {
+          toggle.checked = saved === 'compact';
+          toggle.addEventListener('change', (e) => {
+            const density = e.target.checked ? 'compact' : 'comfortable';
+            document.documentElement.setAttribute('data-density', density);
+            localStorage.setItem('fresh-density', density);
+          });
+        }
+      }
+
+      // Navigation Active State
+      function setupNav() {
+        const links = document.querySelectorAll('.fresh-nav-link');
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const id = entry.target.getAttribute('id');
+              links.forEach(link => {
+                link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+              });
+            }
+          });
+        }, { rootMargin: '-20% 0px -70% 0px' });
+
+        document.querySelectorAll('section[id]').forEach(section => observer.observe(section));
+
+        // Smooth scroll
+        links.forEach(link => {
+          link.addEventListener('click', (e) => {
+            const targetId = link.getAttribute('href').slice(1);
+            const target = document.getElementById(targetId);
+            if (target) {
+              e.preventDefault();
+              target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              history.pushState(null, '', '#' + targetId);
+            }
+          });
+        });
+      }
+
+      // Modal Functions
+      function setupModals() {
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') {
+            document.querySelectorAll('.fresh-modal-overlay.open').forEach(modal => {
+              modal.classList.remove('open');
+            });
+          }
+        });
+
+        document.querySelectorAll('.fresh-modal-overlay').forEach(overlay => {
+          overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) {
+              overlay.classList.remove('open');
+            }
+          });
+        });
+      }
+
+      function openModal(id) {
+        const modal = document.getElementById(id);
+        if (modal) {
+          modal.classList.add('open');
+          document.body.style.overflow = 'hidden';
+        }
+      }
+
+      function closeModal(id) {
+        const modal = document.getElementById(id);
+        if (modal) {
+          modal.classList.remove('open');
+          document.body.style.overflow = '';
+        }
+      }
+
+      // Tab Switching
+      function switchTab(index) {
+        const tabs = document.querySelectorAll('.fresh-tab');
+        const panels = document.querySelectorAll('#tab-panels .tab-panel');
+
+        tabs.forEach((tab, i) => {
+          tab.classList.toggle('active', i === index);
+        });
+
+        panels.forEach((panel, i) => {
+          panel.style.display = i === index ? 'block' : 'none';
+          panel.classList.toggle('active', i === index);
+        });
+      }
+
+      // Copy Code
+      function copyCode(id) {
+        const element = document.getElementById(id);
+        if (!element) return;
+
+        navigator.clipboard.writeText(element.textContent).then(() => {
+          console.log('Code copied!');
+        });
+      }
+
+      // Initialize on load
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+
+      return {
+        openModal,
+        closeModal,
+        switchTab,
+        copyCode
+      };
+    })();
+  </script>
+</body>
+</html>

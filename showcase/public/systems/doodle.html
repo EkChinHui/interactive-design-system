@@ -1,0 +1,1523 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" data-build="2025-11-11T00:00:00Z">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="Doodle Design System v1.0.0">
+  <title>Doodle — Hand-Drawn Design System</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Caveat:wght@400;500;600;700&family=Permanent+Marker&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================
+       DOODLE DESIGN TOKENS 🎨✏️
+       ============================================ */
+
+    :root {
+      /* Hand-drawn Fonts */
+      --ds-font-display: 'Permanent Marker', cursive;
+      --ds-font-heading: 'Caveat', cursive;
+      --ds-font-body: 'Architects Daughter', cursive;
+
+      --ds-font-size-xs: 0.75rem;
+      --ds-font-size-sm: 0.875rem;
+      --ds-font-size-base: 1.125rem;
+      --ds-font-size-lg: 1.25rem;
+      --ds-font-size-xl: 1.5rem;
+      --ds-font-size-2xl: 2rem;
+      --ds-font-size-3xl: 2.5rem;
+      --ds-font-size-4xl: 3.5rem;
+      --ds-font-size-5xl: 4.5rem;
+
+      --ds-font-weight-normal: 400;
+      --ds-font-weight-medium: 500;
+      --ds-font-weight-bold: 700;
+
+      --ds-line-tight: 1.2;
+      --ds-line-normal: 1.4;
+      --ds-line-loose: 1.6;
+
+      /* Sketch Colors - Playful Palette */
+      --ds-paper: #fdfbf7;
+      --ds-ink: #2d3436;
+      --ds-pencil: #636e72;
+      --ds-eraser: #dfe6e9;
+
+      /* Doodle Colors */
+      --ds-blue: #4a90e2;
+      --ds-blue-light: #e8f4fd;
+      --ds-red: #e74c3c;
+      --ds-red-light: #fdecea;
+      --ds-yellow: #f1c40f;
+      --ds-yellow-light: #fef9e7;
+      --ds-green: #2ecc71;
+      --ds-green-light: #eafaf1;
+      --ds-purple: #9b59b6;
+      --ds-purple-light: #f4ecf7;
+      --ds-orange: #e67e22;
+      --ds-orange-light: #fef5e7;
+
+      /* Semantic Colors */
+      --ds-bg: var(--ds-paper);
+      --ds-text: var(--ds-ink);
+      --ds-text-muted: var(--ds-pencil);
+      --ds-border: var(--ds-ink);
+
+      --ds-primary: var(--ds-blue);
+      --ds-success: var(--ds-green);
+      --ds-warning: var(--ds-yellow);
+      --ds-danger: var(--ds-red);
+
+      /* Spacing - Organic */
+      --ds-space-0: 0;
+      --ds-space-1: 0.5rem;
+      --ds-space-2: 1rem;
+      --ds-space-3: 1.5rem;
+      --ds-space-4: 2rem;
+      --ds-space-5: 2.5rem;
+      --ds-space-6: 3rem;
+      --ds-space-8: 4rem;
+      --ds-space-10: 5rem;
+
+      /* Sketchy Borders */
+      --ds-border-width: 2px;
+      --ds-border-width-thick: 3px;
+
+      /* Shadows - Hand-drawn */
+      --ds-shadow-sm: 2px 2px 0 rgba(0,0,0,0.1);
+      --ds-shadow-md: 3px 3px 0 rgba(0,0,0,0.15);
+      --ds-shadow-lg: 4px 4px 0 rgba(0,0,0,0.2);
+      --ds-shadow-sketch: 2px 3px 0 rgba(0,0,0,0.1), 4px 5px 0 rgba(0,0,0,0.05);
+
+      /* Motion - Bouncy */
+      --ds-duration-fast: 200ms;
+      --ds-duration-normal: 300ms;
+      --ds-duration-slow: 500ms;
+
+      --ds-ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      --ds-ease-wiggle: cubic-bezier(0.5, -0.5, 0.5, 1.5);
+    }
+
+    /* ============================================
+       BASE STYLES
+       ============================================ */
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      font-family: var(--ds-font-body);
+      font-size: 16px;
+      line-height: var(--ds-line-normal);
+      color: var(--ds-text);
+      background: var(--ds-bg);
+    }
+
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+      /* Paper texture */
+      background-image:
+        repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,.02) 2px, rgba(0,0,0,.02) 4px),
+        repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0,0,0,.02) 2px, rgba(0,0,0,.02) 4px);
+    }
+
+    ::selection {
+      background: var(--ds-yellow);
+      color: var(--ds-ink);
+    }
+
+    /* Scrollbar - Sketchy */
+    ::-webkit-scrollbar {
+      width: 12px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--ds-paper);
+      border-left: 2px solid var(--ds-ink);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--ds-ink);
+      border: 2px solid var(--ds-paper);
+    }
+
+    /* ============================================
+       LAYOUT
+       ============================================ */
+
+    .doodle-layout {
+      display: grid;
+      grid-template-areas:
+        "header header"
+        "sidebar main";
+      grid-template-columns: 280px 1fr;
+      grid-template-rows: auto 1fr;
+      min-height: 100vh;
+    }
+
+    .doodle-header {
+      grid-area: header;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--ds-paper);
+      border-bottom: 3px solid var(--ds-ink);
+      padding: var(--ds-space-3) var(--ds-space-4);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      /* Wavy border effect */
+      box-shadow: 0 4px 0 -2px var(--ds-ink);
+    }
+
+    .doodle-brand {
+      font-family: var(--ds-font-display);
+      font-size: var(--ds-font-size-2xl);
+      color: var(--ds-text);
+      text-decoration: none;
+      transform: rotate(-2deg);
+      display: inline-block;
+      transition: transform var(--ds-duration-fast) var(--ds-ease-bounce);
+    }
+
+    .doodle-brand:hover {
+      transform: rotate(2deg) scale(1.05);
+    }
+
+    .doodle-sidebar {
+      grid-area: sidebar;
+      background: var(--ds-paper);
+      border-right: 3px solid var(--ds-ink);
+      padding: var(--ds-space-4);
+      position: relative;
+    }
+
+    .doodle-sidebar::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: -3px;
+      width: 3px;
+      height: 100%;
+      background: repeating-linear-gradient(
+        to bottom,
+        var(--ds-ink) 0px,
+        var(--ds-ink) 10px,
+        transparent 10px,
+        transparent 12px
+      );
+    }
+
+    .doodle-main {
+      grid-area: main;
+      padding: var(--ds-space-6) var(--ds-space-4);
+      max-width: 1200px;
+    }
+
+    @media (max-width: 968px) {
+      .doodle-layout {
+        grid-template-areas: "header" "main";
+        grid-template-columns: 1fr;
+      }
+      .doodle-sidebar { display: none; }
+    }
+
+    /* ============================================
+       TYPOGRAPHY - HAND-DRAWN
+       ============================================ */
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--ds-font-heading);
+      font-weight: var(--ds-font-weight-bold);
+      line-height: var(--ds-line-tight);
+      color: var(--ds-text);
+      margin-bottom: var(--ds-space-3);
+    }
+
+    h1 {
+      font-size: var(--ds-font-size-5xl);
+      transform: rotate(-1deg);
+      display: inline-block;
+    }
+
+    h2 {
+      font-size: var(--ds-font-size-4xl);
+      margin-top: var(--ds-space-8);
+      position: relative;
+      display: inline-block;
+    }
+
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: var(--ds-yellow);
+      transform: skewY(-1deg);
+    }
+
+    h3 {
+      font-size: var(--ds-font-size-2xl);
+      margin-top: var(--ds-space-6);
+      transform: rotate(-0.5deg);
+    }
+
+    h4 {
+      font-size: var(--ds-font-size-xl);
+    }
+
+    p {
+      font-size: var(--ds-font-size-base);
+      line-height: var(--ds-line-loose);
+      color: var(--ds-text-muted);
+      margin-bottom: var(--ds-space-3);
+    }
+
+    .lead {
+      font-size: var(--ds-font-size-xl);
+      font-weight: var(--ds-font-weight-medium);
+    }
+
+    code {
+      font-family: 'Courier New', monospace;
+      font-size: 0.9em;
+      background: var(--ds-yellow-light);
+      padding: 0.2em 0.5em;
+      border: 2px solid var(--ds-yellow);
+      transform: rotate(-1deg);
+      display: inline-block;
+    }
+
+    pre {
+      font-family: 'Courier New', monospace;
+      font-size: var(--ds-font-size-sm);
+      background: var(--ds-paper);
+      padding: var(--ds-space-4);
+      border: 3px solid var(--ds-ink);
+      margin: var(--ds-space-4) 0;
+      overflow-x: auto;
+      box-shadow: var(--ds-shadow-sketch);
+      transform: rotate(-0.5deg);
+    }
+
+    pre code {
+      background: none;
+      border: none;
+      padding: 0;
+      transform: none;
+    }
+
+    /* ============================================
+       BUTTONS - SKETCHY
+       ============================================ */
+
+    .doodle-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--ds-space-1);
+      font-family: var(--ds-font-body);
+      font-size: var(--ds-font-size-base);
+      font-weight: var(--ds-font-weight-medium);
+      padding: var(--ds-space-2) var(--ds-space-4);
+      border: 3px solid var(--ds-ink);
+      background: var(--ds-paper);
+      color: var(--ds-text);
+      cursor: pointer;
+      text-decoration: none;
+      position: relative;
+      transform: rotate(-1deg);
+      transition: all var(--ds-duration-fast) var(--ds-ease-bounce);
+      box-shadow: var(--ds-shadow-md);
+    }
+
+    .doodle-btn:hover {
+      transform: rotate(1deg) translateY(-2px);
+      box-shadow: var(--ds-shadow-lg);
+    }
+
+    .doodle-btn:active {
+      transform: rotate(0deg) translateY(1px);
+      box-shadow: var(--ds-shadow-sm);
+    }
+
+    /* Button Variants */
+    .doodle-btn--primary {
+      background: var(--ds-blue-light);
+      border-color: var(--ds-blue);
+      color: var(--ds-blue);
+    }
+
+    .doodle-btn--success {
+      background: var(--ds-green-light);
+      border-color: var(--ds-green);
+      color: var(--ds-green);
+    }
+
+    .doodle-btn--warning {
+      background: var(--ds-yellow-light);
+      border-color: var(--ds-yellow);
+      color: var(--ds-ink);
+    }
+
+    .doodle-btn--danger {
+      background: var(--ds-red-light);
+      border-color: var(--ds-red);
+      color: var(--ds-red);
+    }
+
+    .doodle-btn--filled {
+      background: var(--ds-blue);
+      color: var(--ds-paper);
+    }
+
+    .doodle-btn--filled:hover {
+      background: var(--ds-ink);
+    }
+
+    /* Sketch effect with wavy border */
+    .doodle-btn::before {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      border: 2px dashed transparent;
+      pointer-events: none;
+    }
+
+    /* ============================================
+       INPUTS - SKETCHY
+       ============================================ */
+
+    .doodle-input,
+    .doodle-textarea,
+    .doodle-select {
+      font-family: var(--ds-font-body);
+      font-size: var(--ds-font-size-base);
+      color: var(--ds-text);
+      background: var(--ds-paper);
+      border: 3px solid var(--ds-ink);
+      padding: var(--ds-space-2) var(--ds-space-3);
+      width: 100%;
+      transform: rotate(-0.5deg);
+      transition: all var(--ds-duration-normal) var(--ds-ease-bounce);
+      box-shadow: var(--ds-shadow-sm);
+    }
+
+    .doodle-input:hover,
+    .doodle-textarea:hover,
+    .doodle-select:hover {
+      transform: rotate(0.5deg);
+      box-shadow: var(--ds-shadow-md);
+    }
+
+    .doodle-input:focus,
+    .doodle-textarea:focus,
+    .doodle-select:focus {
+      outline: none;
+      border-color: var(--ds-blue);
+      background: var(--ds-blue-light);
+      transform: rotate(0deg) scale(1.01);
+      box-shadow: var(--ds-shadow-lg), 0 0 0 3px var(--ds-blue-light);
+    }
+
+    .doodle-textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .doodle-label {
+      display: block;
+      font-size: var(--ds-font-size-base);
+      font-weight: var(--ds-font-weight-medium);
+      color: var(--ds-text);
+      margin-bottom: var(--ds-space-1);
+      transform: rotate(-1deg);
+    }
+
+    /* Checkbox - Doodle Style */
+    .doodle-checkbox {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--ds-space-2);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .doodle-checkbox input {
+      position: absolute;
+      opacity: 0;
+    }
+
+    .doodle-checkbox-box {
+      width: 28px;
+      height: 28px;
+      border: 3px solid var(--ds-ink);
+      background: var(--ds-paper);
+      position: relative;
+      flex-shrink: 0;
+      transform: rotate(-3deg);
+      transition: all var(--ds-duration-normal) var(--ds-ease-bounce);
+    }
+
+    .doodle-checkbox:hover .doodle-checkbox-box {
+      transform: rotate(3deg);
+      box-shadow: var(--ds-shadow-md);
+    }
+
+    .doodle-checkbox input:checked + .doodle-checkbox-box {
+      background: var(--ds-blue-light);
+      border-color: var(--ds-blue);
+      transform: rotate(0deg);
+    }
+
+    .doodle-checkbox input:checked + .doodle-checkbox-box::after {
+      content: '✓';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-5deg);
+      color: var(--ds-blue);
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    /* ============================================
+       CARDS - SKETCHY
+       ============================================ */
+
+    .doodle-card {
+      background: var(--ds-paper);
+      border: 3px solid var(--ds-ink);
+      padding: var(--ds-space-4);
+      margin-bottom: var(--ds-space-4);
+      position: relative;
+      transform: rotate(-0.5deg);
+      transition: all var(--ds-duration-normal) var(--ds-ease-bounce);
+      box-shadow: var(--ds-shadow-md);
+    }
+
+    .doodle-card:hover {
+      transform: rotate(0.5deg) translateY(-4px);
+      box-shadow: var(--ds-shadow-lg);
+    }
+
+    /* Corner doodles */
+    .doodle-card::before,
+    .doodle-card::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--ds-yellow);
+    }
+
+    .doodle-card::before {
+      top: -10px;
+      left: -10px;
+      border-right: none;
+      border-bottom: none;
+      transform: rotate(-10deg);
+    }
+
+    .doodle-card::after {
+      bottom: -10px;
+      right: -10px;
+      border-left: none;
+      border-top: none;
+      transform: rotate(-10deg);
+    }
+
+    .doodle-card-title {
+      font-family: var(--ds-font-heading);
+      font-size: var(--ds-font-size-xl);
+      font-weight: var(--ds-font-weight-bold);
+      margin-bottom: var(--ds-space-2);
+      transform: rotate(-1deg);
+    }
+
+    /* ============================================
+       ALERTS - DOODLE STYLE
+       ============================================ */
+
+    .doodle-alert {
+      padding: var(--ds-space-3) var(--ds-space-4);
+      border: 3px solid;
+      margin: var(--ds-space-4) 0;
+      position: relative;
+      transform: rotate(-0.5deg);
+      box-shadow: var(--ds-shadow-md);
+    }
+
+    .doodle-alert::before {
+      content: '!';
+      position: absolute;
+      top: -15px;
+      left: 20px;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 20px;
+      border: 3px solid;
+      background: var(--ds-paper);
+      transform: rotate(15deg);
+    }
+
+    .doodle-alert--info {
+      background: var(--ds-blue-light);
+      border-color: var(--ds-blue);
+      color: var(--ds-blue);
+    }
+
+    .doodle-alert--info::before {
+      border-color: var(--ds-blue);
+      color: var(--ds-blue);
+    }
+
+    .doodle-alert--success {
+      background: var(--ds-green-light);
+      border-color: var(--ds-green);
+      color: var(--ds-green);
+    }
+
+    .doodle-alert--success::before {
+      content: '✓';
+      border-color: var(--ds-green);
+      color: var(--ds-green);
+    }
+
+    .doodle-alert--warning {
+      background: var(--ds-yellow-light);
+      border-color: var(--ds-yellow);
+      color: var(--ds-ink);
+    }
+
+    .doodle-alert--warning::before {
+      border-color: var(--ds-yellow);
+      color: var(--ds-ink);
+    }
+
+    .doodle-alert--danger {
+      background: var(--ds-red-light);
+      border-color: var(--ds-red);
+      color: var(--ds-red);
+    }
+
+    .doodle-alert--danger::before {
+      content: '✗';
+      border-color: var(--ds-red);
+      color: var(--ds-red);
+    }
+
+    /* ============================================
+       BADGES - HAND-DRAWN
+       ============================================ */
+
+    .doodle-badge {
+      display: inline-flex;
+      align-items: center;
+      font-size: var(--ds-font-size-sm);
+      font-weight: var(--ds-font-weight-medium);
+      padding: 0.25em 0.75em;
+      border: 2px solid var(--ds-ink);
+      background: var(--ds-paper);
+      transform: rotate(-2deg);
+      box-shadow: 2px 2px 0 rgba(0,0,0,0.1);
+    }
+
+    .doodle-badge--primary {
+      background: var(--ds-blue-light);
+      border-color: var(--ds-blue);
+      color: var(--ds-blue);
+    }
+
+    .doodle-badge--success {
+      background: var(--ds-green-light);
+      border-color: var(--ds-green);
+      color: var(--ds-green);
+    }
+
+    .doodle-badge--warning {
+      background: var(--ds-yellow-light);
+      border-color: var(--ds-yellow);
+      color: var(--ds-ink);
+    }
+
+    /* ============================================
+       TABLES - SKETCHY
+       ============================================ */
+
+    .doodle-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      border: 3px solid var(--ds-ink);
+      background: var(--ds-paper);
+      transform: rotate(-0.5deg);
+      box-shadow: var(--ds-shadow-sketch);
+    }
+
+    .doodle-table th {
+      font-weight: var(--ds-font-weight-bold);
+      text-align: left;
+      padding: var(--ds-space-2) var(--ds-space-3);
+      border-bottom: 3px solid var(--ds-ink);
+      background: var(--ds-yellow-light);
+    }
+
+    .doodle-table td {
+      padding: var(--ds-space-2) var(--ds-space-3);
+      border-bottom: 2px dashed var(--ds-eraser);
+    }
+
+    .doodle-table tbody tr:hover {
+      background: var(--ds-blue-light);
+    }
+
+    .doodle-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* ============================================
+       NAVIGATION - DOODLE
+       ============================================ */
+
+    .doodle-nav {
+      list-style: none;
+    }
+
+    .doodle-nav-section {
+      margin-bottom: var(--ds-space-4);
+    }
+
+    .doodle-nav-title {
+      font-family: var(--ds-font-display);
+      font-size: var(--ds-font-size-sm);
+      color: var(--ds-text-muted);
+      margin-bottom: var(--ds-space-2);
+      transform: rotate(-2deg);
+      display: inline-block;
+    }
+
+    .doodle-nav-link {
+      display: block;
+      padding: var(--ds-space-1) var(--ds-space-2);
+      color: var(--ds-text-muted);
+      text-decoration: none;
+      position: relative;
+      transition: all var(--ds-duration-fast) var(--ds-ease-bounce);
+      margin-bottom: 4px;
+    }
+
+    .doodle-nav-link:hover {
+      color: var(--ds-text);
+      transform: translateX(4px);
+    }
+
+    .doodle-nav-link.active {
+      color: var(--ds-blue);
+      font-weight: var(--ds-font-weight-bold);
+    }
+
+    .doodle-nav-link.active::before {
+      content: '→';
+      position: absolute;
+      left: -20px;
+      animation: bounce 1s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateX(0); }
+      50% { transform: translateX(4px); }
+    }
+
+    /* ============================================
+       MODAL - SKETCHY
+       ============================================ */
+
+    .doodle-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(253, 251, 247, 0.9);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--ds-space-4);
+      opacity: 0;
+      visibility: hidden;
+      transition: all var(--ds-duration-normal) ease;
+    }
+
+    .doodle-modal-overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .doodle-modal {
+      background: var(--ds-paper);
+      border: 4px solid var(--ds-ink);
+      max-width: 600px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: var(--ds-shadow-sketch);
+      transform: rotate(-1deg) scale(0.9);
+      transition: transform var(--ds-duration-normal) var(--ds-ease-bounce);
+    }
+
+    .doodle-modal-overlay.open .doodle-modal {
+      transform: rotate(0deg) scale(1);
+    }
+
+    .doodle-modal-header {
+      padding: var(--ds-space-4);
+      border-bottom: 3px solid var(--ds-ink);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--ds-yellow-light);
+    }
+
+    .doodle-modal-title {
+      font-family: var(--ds-font-heading);
+      font-size: var(--ds-font-size-2xl);
+      font-weight: var(--ds-font-weight-bold);
+      margin: 0;
+      transform: rotate(-1deg);
+    }
+
+    .doodle-modal-body {
+      padding: var(--ds-space-4);
+    }
+
+    .doodle-modal-footer {
+      padding: var(--ds-space-4);
+      border-top: 3px solid var(--ds-ink);
+      display: flex;
+      gap: var(--ds-space-2);
+      justify-content: flex-end;
+    }
+
+    /* ============================================
+       UTILITIES
+       ============================================ */
+
+    .flex { display: flex; }
+    .flex-col { flex-direction: column; }
+    .items-center { align-items: center; }
+    .justify-between { justify-content: space-between; }
+    .gap-1 { gap: var(--ds-space-1); }
+    .gap-2 { gap: var(--ds-space-2); }
+    .gap-4 { gap: var(--ds-space-4); }
+
+    .grid {
+      display: grid;
+      gap: var(--ds-space-4);
+    }
+
+    .grid-2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+    .grid-3 { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+
+    .doodle-example {
+      padding: var(--ds-space-4);
+      background: var(--ds-paper);
+      border: 3px dashed var(--ds-ink);
+      margin: var(--ds-space-4) 0;
+      transform: rotate(0.5deg);
+    }
+
+    /* Divider - Sketchy */
+    .doodle-divider {
+      height: 3px;
+      background: repeating-linear-gradient(
+        to right,
+        var(--ds-ink) 0px,
+        var(--ds-ink) 10px,
+        transparent 10px,
+        transparent 20px
+      );
+      margin: var(--ds-space-6) 0;
+      transform: rotate(-0.5deg);
+    }
+
+    /* Wiggle Animation */
+    @keyframes wiggle {
+      0%, 100% { transform: rotate(-1deg); }
+      25% { transform: rotate(1deg); }
+      50% { transform: rotate(-0.5deg); }
+      75% { transform: rotate(0.5deg); }
+    }
+
+    .wiggle:hover {
+      animation: wiggle 0.5s ease-in-out infinite;
+    }
+
+    /* Progress Bar - Sketchy */
+    .doodle-progress {
+      width: 100%;
+      height: 24px;
+      background: var(--ds-paper);
+      border: 3px solid var(--ds-ink);
+      position: relative;
+      overflow: hidden;
+      transform: rotate(-1deg);
+    }
+
+    .doodle-progress-bar {
+      height: 100%;
+      background: repeating-linear-gradient(
+        45deg,
+        var(--ds-blue),
+        var(--ds-blue) 10px,
+        var(--ds-blue-light) 10px,
+        var(--ds-blue-light) 20px
+      );
+      transition: width var(--ds-duration-slow) ease;
+      border-right: 2px solid var(--ds-ink);
+    }
+
+    /* Tab - Doodle Style */
+    .doodle-tabs {
+      display: flex;
+      gap: var(--ds-space-1);
+      margin-bottom: var(--ds-space-4);
+      border-bottom: 3px solid var(--ds-ink);
+    }
+
+    .doodle-tab {
+      padding: var(--ds-space-2) var(--ds-space-3);
+      background: transparent;
+      border: none;
+      color: var(--ds-text-muted);
+      font-family: var(--ds-font-body);
+      font-size: var(--ds-font-size-base);
+      cursor: pointer;
+      position: relative;
+      transition: all var(--ds-duration-fast) var(--ds-ease-bounce);
+      transform: rotate(-1deg);
+    }
+
+    .doodle-tab:hover {
+      color: var(--ds-text);
+      transform: rotate(1deg);
+    }
+
+    .doodle-tab.active {
+      color: var(--ds-text);
+      font-weight: var(--ds-font-weight-bold);
+      background: var(--ds-yellow-light);
+      border: 3px solid var(--ds-ink);
+      border-bottom: none;
+      margin-bottom: -3px;
+      transform: rotate(0deg);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Hand-drawn SVG Icons -->
+  <svg style="display: none;" aria-hidden="true">
+    <symbol id="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <path d="M5 12 L19 12 M15 6 L21 12 L15 18" />
+    </symbol>
+    <symbol id="icon-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M12 2 L15 9 L22 10 L17 15 L18 22 L12 18 L6 22 L7 15 L2 10 L9 9 Z" />
+    </symbol>
+    <symbol id="icon-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M12 21 C12 21 3 15 3 9 C3 6 5 4 7 4 C9 4 11 5 12 7 C13 5 15 4 17 4 C19 4 21 6 21 9 C21 15 12 21 12 21 Z" />
+    </symbol>
+    <symbol id="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+      <path d="M5 13 L9 17 L19 7" />
+    </symbol>
+  </svg>
+
+  <div class="doodle-layout">
+    <!-- Header -->
+    <header class="doodle-header">
+      <a href="#" class="doodle-brand">Doodle DS ✏️</a>
+      <div style="font-family: var(--ds-font-body);">Hand-drawn design system</div>
+    </header>
+
+    <!-- Sidebar -->
+    <nav class="doodle-sidebar">
+      <div class="doodle-nav-section">
+        <div class="doodle-nav-title">Basics</div>
+        <ul class="doodle-nav">
+          <li><a href="#intro" class="doodle-nav-link">Introduction</a></li>
+          <li><a href="#typography" class="doodle-nav-link">Typography</a></li>
+          <li><a href="#colors" class="doodle-nav-link">Colors</a></li>
+        </ul>
+      </div>
+
+      <div class="doodle-nav-section">
+        <div class="doodle-nav-title">Components</div>
+        <ul class="doodle-nav">
+          <li><a href="#buttons" class="doodle-nav-link">Buttons</a></li>
+          <li><a href="#inputs" class="doodle-nav-link">Inputs</a></li>
+          <li><a href="#cards" class="doodle-nav-link">Cards</a></li>
+          <li><a href="#alerts" class="doodle-nav-link">Alerts</a></li>
+          <li><a href="#tables" class="doodle-nav-link">Tables</a></li>
+          <li><a href="#modals" class="doodle-nav-link">Modals</a></li>
+        </ul>
+      </div>
+
+      <div class="doodle-nav-section">
+        <div class="doodle-nav-title">Examples</div>
+        <ul class="doodle-nav">
+          <li><a href="#forms" class="doodle-nav-link">Forms</a></li>
+          <li><a href="#dashboard" class="doodle-nav-link">Dashboard</a></li>
+        </ul>
+      </div>
+
+      <!-- Doodle decoration -->
+      <div style="margin-top: var(--ds-space-8); text-align: center;">
+        <svg width="100" height="100" viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="40" fill="none" stroke="var(--ds-yellow)" stroke-width="3" transform="rotate(-5 50 50)"/>
+          <path d="M 30 45 Q 35 35 40 45 T 50 45 T 60 45 T 70 45" fill="none" stroke="var(--ds-ink)" stroke-width="2"/>
+          <circle cx="35" cy="40" r="3" fill="var(--ds-ink)"/>
+          <circle cx="65" cy="40" r="3" fill="var(--ds-ink)"/>
+        </svg>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="doodle-main">
+      <!-- Introduction -->
+      <section id="intro">
+        <h1>Doodle Design System ✏️</h1>
+        <p class="lead">A playful, hand-drawn design system that looks like sketches from your notebook!</p>
+
+        <div class="doodle-alert doodle-alert--info">
+          <strong>Welcome!</strong> Everything here is designed to look rough, sketchy, and hand-drawn—just like Excalidraw! No perfect lines here. 🎨
+        </div>
+
+        <div class="grid-3">
+          <div class="doodle-card">
+            <svg width="40" height="40" viewBox="0 0 40 40" style="margin-bottom: var(--ds-space-2);">
+              <path d="M 5 20 L 20 5 L 35 20 L 20 35 Z" fill="var(--ds-blue-light)" stroke="var(--ds-blue)" stroke-width="2"/>
+            </svg>
+            <h4 class="doodle-card-title">Hand-Drawn</h4>
+            <p>Every element looks like it was sketched by hand with imperfect lines and playful angles.</p>
+          </div>
+
+          <div class="doodle-card">
+            <svg width="40" height="40" viewBox="0 0 40 40" style="margin-bottom: var(--ds-space-2);">
+              <rect x="5" y="5" width="30" height="30" fill="var(--ds-green-light)" stroke="var(--ds-green)" stroke-width="2" transform="rotate(-3 20 20)"/>
+            </svg>
+            <h4 class="doodle-card-title">Playful</h4>
+            <p>Bouncy animations, wobbles, and delightful micro-interactions make everything fun!</p>
+          </div>
+
+          <div class="doodle-card">
+            <svg width="40" height="40" viewBox="0 0 40 40" style="margin-bottom: var(--ds-space-2);">
+              <circle cx="20" cy="20" r="15" fill="var(--ds-yellow-light)" stroke="var(--ds-yellow)" stroke-width="2"/>
+            </svg>
+            <h4 class="doodle-card-title">Accessible</h4>
+            <p>Despite the casual look, it's fully accessible with proper contrast and keyboard support.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Typography -->
+      <section id="typography">
+        <h2>Typography 📝</h2>
+        <p>We use hand-drawn Google Fonts to create that authentic sketchy feel!</p>
+
+        <div class="doodle-example">
+          <h1 style="font-size: var(--ds-font-size-4xl); margin-bottom: var(--ds-space-3);">Big Display Text</h1>
+          <h2 style="margin-top: 0;">Section Heading</h2>
+          <h3>Subsection Heading</h3>
+          <p class="lead">Lead paragraph with emphasis for important introductions.</p>
+          <p>Regular paragraph text that's easy to read even with the hand-drawn font. The spacing is comfortable and the line height is generous.</p>
+          <p style="font-size: var(--ds-font-size-sm);">Small text for fine print and captions.</p>
+          <code>inline.code()</code>
+        </div>
+
+        <h3>Font Stack</h3>
+        <div class="doodle-card">
+          <ul style="list-style: none;">
+            <li style="font-family: var(--ds-font-display); font-size: var(--ds-font-size-xl); margin-bottom: var(--ds-space-2);">
+              Permanent Marker - Display
+            </li>
+            <li style="font-family: var(--ds-font-heading); font-size: var(--ds-font-size-xl); margin-bottom: var(--ds-space-2);">
+              Caveat - Headings
+            </li>
+            <li style="font-family: var(--ds-font-body); font-size: var(--ds-font-size-base);">
+              Architects Daughter - Body Text
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Colors -->
+      <section id="colors">
+        <h2>Colors 🎨</h2>
+        <p>A playful palette with light backgrounds and bold borders!</p>
+
+        <div class="grid-3">
+          <div>
+            <div style="height: 100px; background: var(--ds-blue-light); border: 3px solid var(--ds-blue); transform: rotate(-2deg); margin-bottom: var(--ds-space-2);"></div>
+            <p><strong>Blue</strong> - Primary actions</p>
+          </div>
+          <div>
+            <div style="height: 100px; background: var(--ds-green-light); border: 3px solid var(--ds-green); transform: rotate(1deg); margin-bottom: var(--ds-space-2);"></div>
+            <p><strong>Green</strong> - Success states</p>
+          </div>
+          <div>
+            <div style="height: 100px; background: var(--ds-yellow-light); border: 3px solid var(--ds-yellow); transform: rotate(-1deg); margin-bottom: var(--ds-space-2);"></div>
+            <p><strong>Yellow</strong> - Warnings & highlights</p>
+          </div>
+          <div>
+            <div style="height: 100px; background: var(--ds-red-light); border: 3px solid var(--ds-red); transform: rotate(2deg); margin-bottom: var(--ds-space-2);"></div>
+            <p><strong>Red</strong> - Errors & danger</p>
+          </div>
+          <div>
+            <div style="height: 100px; background: var(--ds-purple-light); border: 3px solid var(--ds-purple); transform: rotate(-2deg); margin-bottom: var(--ds-space-2);"></div>
+            <p><strong>Purple</strong> - Accents</p>
+          </div>
+          <div>
+            <div style="height: 100px; background: var(--ds-orange-light); border: 3px solid var(--ds-orange); transform: rotate(1deg); margin-bottom: var(--ds-space-2);"></div>
+            <p><strong>Orange</strong> - Highlights</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Buttons -->
+      <section id="buttons">
+        <h2>Buttons 🔘</h2>
+        <p>Sketchy buttons that wobble when you hover!</p>
+
+        <div class="doodle-example">
+          <div class="flex gap-2" style="flex-wrap: wrap; align-items: center;">
+            <button class="doodle-btn">Default</button>
+            <button class="doodle-btn doodle-btn--primary">Primary</button>
+            <button class="doodle-btn doodle-btn--success">Success</button>
+            <button class="doodle-btn doodle-btn--warning">Warning</button>
+            <button class="doodle-btn doodle-btn--danger">Danger</button>
+            <button class="doodle-btn doodle-btn--filled">Filled</button>
+          </div>
+        </div>
+
+        <div style="border: 3px solid var(--ds-ink); padding: var(--ds-space-3); margin: var(--ds-space-4) 0; background: var(--ds-paper); transform: rotate(0.5deg);">
+          <div style="margin-bottom: var(--ds-space-2); font-weight: bold;">HTML</div>
+          <pre style="margin: 0; transform: none;"><code>&lt;button class="doodle-btn doodle-btn--primary"&gt;Primary&lt;/button&gt;</code></pre>
+        </div>
+
+        <div class="doodle-alert doodle-alert--info">
+          <strong>Tip:</strong> Hover over buttons to see them wiggle and rotate!
+        </div>
+      </section>
+
+      <!-- Inputs -->
+      <section id="inputs">
+        <h2>Inputs ✍️</h2>
+        <p>Hand-drawn form controls with sketchy borders.</p>
+
+        <div class="doodle-example">
+          <div style="max-width: 500px;">
+            <div style="margin-bottom: var(--ds-space-4);">
+              <label class="doodle-label">Your Name</label>
+              <input type="text" class="doodle-input" placeholder="John Doe">
+            </div>
+
+            <div style="margin-bottom: var(--ds-space-4);">
+              <label class="doodle-label">Email Address</label>
+              <input type="email" class="doodle-input" placeholder="john@example.com">
+            </div>
+
+            <div style="margin-bottom: var(--ds-space-4);">
+              <label class="doodle-label">Your Message</label>
+              <textarea class="doodle-textarea" placeholder="Write something nice..."></textarea>
+            </div>
+
+            <div style="margin-bottom: var(--ds-space-4);">
+              <label class="doodle-label">Choose Option</label>
+              <select class="doodle-select">
+                <option>Option One</option>
+                <option>Option Two</option>
+                <option>Option Three</option>
+              </select>
+            </div>
+
+            <label class="doodle-checkbox">
+              <input type="checkbox" checked>
+              <span class="doodle-checkbox-box"></span>
+              <span>I agree to receive doodles</span>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- Cards -->
+      <section id="cards">
+        <h2>Cards 🃏</h2>
+        <p>Sketchy containers with corner doodles!</p>
+
+        <div class="grid-2">
+          <div class="doodle-card wiggle">
+            <span class="doodle-badge doodle-badge--primary" style="margin-bottom: var(--ds-space-2);">Featured</span>
+            <h4 class="doodle-card-title">Doodle Card</h4>
+            <p>Cards have sketchy borders and cute corner decorations. Hover over me!</p>
+            <button class="doodle-btn doodle-btn--primary">Learn More</button>
+          </div>
+
+          <div class="doodle-card wiggle">
+            <h4 class="doodle-card-title">With Progress</h4>
+            <p>You can add progress bars and other components inside cards.</p>
+            <div class="doodle-progress" style="margin-top: var(--ds-space-3);">
+              <div class="doodle-progress-bar" style="width: 70%;"></div>
+            </div>
+            <p style="margin-top: var(--ds-space-1); font-size: var(--ds-font-size-sm);">70% Complete!</p>
+          </div>
+
+          <div class="doodle-card wiggle">
+            <h4 class="doodle-card-title">Playful Design</h4>
+            <p>Every element is slightly rotated and has hand-drawn borders for that authentic sketch feel.</p>
+            <div style="margin-top: var(--ds-space-3);">
+              <span class="doodle-badge doodle-badge--success">Fun</span>
+              <span class="doodle-badge doodle-badge--warning" style="margin-left: var(--ds-space-1);">Playful</span>
+            </div>
+          </div>
+
+          <div class="doodle-card wiggle">
+            <svg width="60" height="60" viewBox="0 0 60 60" style="margin-bottom: var(--ds-space-2);">
+              <path d="M 30 10 L 40 25 L 55 30 L 40 35 L 30 50 L 20 35 L 5 30 L 20 25 Z"
+                    fill="var(--ds-yellow-light)"
+                    stroke="var(--ds-yellow)"
+                    stroke-width="2"/>
+            </svg>
+            <h4 class="doodle-card-title">Hand-Drawn Icons</h4>
+            <p>Use SVG to create custom hand-drawn icons that match the aesthetic!</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Alerts -->
+      <section id="alerts">
+        <h2>Alerts 📢</h2>
+        <p>Notification messages with fun circular badges!</p>
+
+        <div class="doodle-example">
+          <div class="doodle-alert doodle-alert--info">
+            <strong>Info:</strong> This is an informational message with a sketchy border!
+          </div>
+
+          <div class="doodle-alert doodle-alert--success">
+            <strong>Success:</strong> Your doodle has been saved successfully!
+          </div>
+
+          <div class="doodle-alert doodle-alert--warning">
+            <strong>Warning:</strong> This might erase your sketch!
+          </div>
+
+          <div class="doodle-alert doodle-alert--danger">
+            <strong>Error:</strong> Failed to load your doodles!
+          </div>
+        </div>
+      </section>
+
+      <!-- Tables -->
+      <section id="tables">
+        <h2>Tables 📊</h2>
+        <p>Data tables with dashed borders and yellow headers!</p>
+
+        <div class="doodle-example">
+          <table class="doodle-table">
+            <thead>
+              <tr>
+                <th>Doodler</th>
+                <th>Favorite Tool</th>
+                <th>Sketches</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="font-weight: bold;">Sarah Sketch</td>
+                <td>Pencil ✏️</td>
+                <td>127</td>
+                <td><span class="doodle-badge doodle-badge--success">Active</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight: bold;">Mike Marker</td>
+                <td>Marker 🖊️</td>
+                <td>89</td>
+                <td><span class="doodle-badge doodle-badge--success">Active</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight: bold;">Dana Doodle</td>
+                <td>Crayon 🖍️</td>
+                <td>203</td>
+                <td><span class="doodle-badge doodle-badge--primary">Pro</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight: bold;">Pat Paint</td>
+                <td>Brush 🎨</td>
+                <td>56</td>
+                <td><span class="doodle-badge doodle-badge--warning">New</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Modals -->
+      <section id="modals">
+        <h2>Modals 🪟</h2>
+        <p>Pop-up dialogs with sketchy borders!</p>
+
+        <div class="doodle-example">
+          <button class="doodle-btn doodle-btn--primary" onclick="DOODLE.openModal('demo-modal')">
+            Open Modal
+          </button>
+        </div>
+      </section>
+
+      <!-- Forms Pattern -->
+      <section id="forms">
+        <h2>Form Example 📝</h2>
+        <p>A complete contact form with doodle styling!</p>
+
+        <div class="doodle-card" style="max-width: 600px;">
+          <h3 style="margin-top: 0;">Send us a Doodle!</h3>
+          <form>
+            <div style="margin-bottom: var(--ds-space-3);">
+              <label class="doodle-label">Your Name</label>
+              <input type="text" class="doodle-input" placeholder="Name" required>
+            </div>
+
+            <div style="margin-bottom: var(--ds-space-3);">
+              <label class="doodle-label">Email</label>
+              <input type="email" class="doodle-input" placeholder="you@example.com" required>
+            </div>
+
+            <div style="margin-bottom: var(--ds-space-3);">
+              <label class="doodle-label">Doodle Type</label>
+              <select class="doodle-select" required>
+                <option>Sketch</option>
+                <option>Cartoon</option>
+                <option>Abstract</option>
+                <option>Portrait</option>
+              </select>
+            </div>
+
+            <div style="margin-bottom: var(--ds-space-3);">
+              <label class="doodle-label">Your Message</label>
+              <textarea class="doodle-textarea" placeholder="Tell us about your doodle..." required></textarea>
+            </div>
+
+            <label class="doodle-checkbox" style="margin-bottom: var(--ds-space-4);">
+              <input type="checkbox" required>
+              <span class="doodle-checkbox-box"></span>
+              <span>I love hand-drawn designs!</span>
+            </label>
+
+            <div class="flex gap-2">
+              <button type="submit" class="doodle-btn doodle-btn--filled">Send Doodle</button>
+              <button type="reset" class="doodle-btn">Clear</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- Dashboard -->
+      <section id="dashboard">
+        <h2>Dashboard Example 📈</h2>
+        <p>Stats and data with playful sketchy styling!</p>
+
+        <div class="grid-3" style="margin-bottom: var(--ds-space-6);">
+          <div class="doodle-card">
+            <div style="font-size: var(--ds-font-size-sm); color: var(--ds-text-muted); margin-bottom: var(--ds-space-1);">Total Doodles</div>
+            <div style="font-family: var(--ds-font-heading); font-size: var(--ds-font-size-4xl); font-weight: bold; margin-bottom: var(--ds-space-2);">1,234</div>
+            <span class="doodle-badge doodle-badge--success">+12% this week</span>
+          </div>
+
+          <div class="doodle-card">
+            <div style="font-size: var(--ds-font-size-sm); color: var(--ds-text-muted); margin-bottom: var(--ds-space-1);">Active Users</div>
+            <div style="font-family: var(--ds-font-heading); font-size: var(--ds-font-size-4xl); font-weight: bold; margin-bottom: var(--ds-space-2);">567</div>
+            <span class="doodle-badge doodle-badge--primary">Online now</span>
+          </div>
+
+          <div class="doodle-card">
+            <div style="font-size: var(--ds-font-size-sm); color: var(--ds-text-muted); margin-bottom: var(--ds-space-1);">Sketches Shared</div>
+            <div style="font-family: var(--ds-font-heading); font-size: var(--ds-font-size-4xl); font-weight: bold; margin-bottom: var(--ds-space-2);">89</div>
+            <span class="doodle-badge doodle-badge--warning">Today</span>
+          </div>
+        </div>
+
+        <div class="doodle-card">
+          <h3 style="margin-top: 0;">Recent Activity</h3>
+          <table class="doodle-table">
+            <thead>
+              <tr>
+                <th>Doodler</th>
+                <th>Action</th>
+                <th>Time</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="font-weight: bold;">Sarah 🎨</td>
+                <td>Created new sketch</td>
+                <td>2 mins ago</td>
+              </tr>
+              <tr>
+                <td style="font-weight: bold;">Mike ✏️</td>
+                <td>Shared a doodle</td>
+                <td>15 mins ago</td>
+              </tr>
+              <tr>
+                <td style="font-weight: bold;">Dana 🖍️</td>
+                <td>Liked 5 sketches</td>
+                <td>1 hour ago</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <div class="doodle-divider"></div>
+      <footer style="text-align: center; padding: var(--ds-space-6) 0;">
+        <h2 style="font-family: var(--ds-font-display); margin-bottom: var(--ds-space-2);">Doodle DS ✏️</h2>
+        <p>v1.0.0 — Hand-drawn with love 💙</p>
+        <p style="margin-top: var(--ds-space-2); font-size: var(--ds-font-size-sm); color: var(--ds-text-muted);">
+          Made for people who love sketchy, playful designs!
+        </p>
+
+        <svg width="200" height="80" viewBox="0 0 200 80" style="margin-top: var(--ds-space-4);">
+          <path d="M 20 40 Q 50 20, 80 40 T 140 40 T 180 40"
+                fill="none"
+                stroke="var(--ds-blue)"
+                stroke-width="3"
+                stroke-linecap="round"/>
+          <circle cx="50" cy="30" r="8" fill="var(--ds-yellow)" stroke="var(--ds-ink)" stroke-width="2"/>
+          <circle cx="110" cy="30" r="8" fill="var(--ds-red)" stroke="var(--ds-ink)" stroke-width="2"/>
+          <circle cx="150" cy="50" r="8" fill="var(--ds-green)" stroke="var(--ds-ink)" stroke-width="2"/>
+        </svg>
+      </footer>
+    </main>
+  </div>
+
+  <!-- Modal -->
+  <div class="doodle-modal-overlay" id="demo-modal" role="dialog" aria-modal="true">
+    <div class="doodle-modal">
+      <div class="doodle-modal-header">
+        <h3 class="doodle-modal-title">Sketchy Modal!</h3>
+        <button class="doodle-btn" onclick="DOODLE.closeModal('demo-modal')" style="padding: var(--ds-space-1) var(--ds-space-2);">
+          ✕
+        </button>
+      </div>
+      <div class="doodle-modal-body">
+        <p>This is a hand-drawn modal dialog! Everything has sketchy borders and playful rotations.</p>
+        <p>Press the button below or click outside to close it.</p>
+
+        <div class="doodle-alert doodle-alert--success">
+          <strong>Fun Fact:</strong> Every element is slightly rotated for that authentic doodle feel!
+        </div>
+      </div>
+      <div class="doodle-modal-footer">
+        <button class="doodle-btn" onclick="DOODLE.closeModal('demo-modal')">Cancel</button>
+        <button class="doodle-btn doodle-btn--filled" onclick="DOODLE.closeModal('demo-modal')">Got it!</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    window.DOODLE = (function() {
+      'use strict';
+
+      function init() {
+        setupNav();
+        setupModals();
+      }
+
+      function setupNav() {
+        const links = document.querySelectorAll('.doodle-nav-link');
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const id = entry.target.getAttribute('id');
+              links.forEach(link => {
+                link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+              });
+            }
+          });
+        }, { rootMargin: '-20% 0px -70% 0px' });
+
+        document.querySelectorAll('section[id]').forEach(section => observer.observe(section));
+
+        links.forEach(link => {
+          link.addEventListener('click', (e) => {
+            const targetId = link.getAttribute('href').slice(1);
+            const target = document.getElementById(targetId);
+            if (target) {
+              e.preventDefault();
+              target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              history.pushState(null, '', '#' + targetId);
+            }
+          });
+        });
+      }
+
+      function setupModals() {
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') {
+            document.querySelectorAll('.doodle-modal-overlay.open').forEach(modal => {
+              modal.classList.remove('open');
+            });
+          }
+        });
+
+        document.querySelectorAll('.doodle-modal-overlay').forEach(overlay => {
+          overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) {
+              overlay.classList.remove('open');
+            }
+          });
+        });
+      }
+
+      function openModal(id) {
+        const modal = document.getElementById(id);
+        if (modal) modal.classList.add('open');
+      }
+
+      function closeModal(id) {
+        const modal = document.getElementById(id);
+        if (modal) modal.classList.remove('open');
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+
+      return { openModal, closeModal };
+    })();
+  </script>
+</body>
+</html>
